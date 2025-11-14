@@ -1,0 +1,23 @@
+name: Check
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Docs
+        run: |
+          cargo doc
+
+      - name: Deploy to GitHub pages
+        run: |
+          cd target
+          ghp-import -n -p -f doc
