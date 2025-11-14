@@ -17,6 +17,15 @@ jobs:
         run: |
           cargo doc
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Prepare Docs deployment
+        run: |
+          pip install ghp-import
+
       - name: Deploy to GitHub pages
         run: |
           cd target
