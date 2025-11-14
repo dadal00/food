@@ -13,20 +13,11 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
 
-      - name: Build Docs
+      - name: Build
         run: |
           cargo doc
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          python-version: 3.13
-
-      - name: Prepare Docs deployment
-        run: |
-          pip install ghp-import
-
-      - name: Deploy to GitHub pages
-        run: |
-          cd target
-          ghp-import -n -p -f doc
+          folder: target/doc/food
