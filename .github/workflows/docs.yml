@@ -27,6 +27,8 @@ jobs:
           pip install ghp-import
 
       - name: Deploy to GitHub pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd target
           ghp-import -n -p -f doc
