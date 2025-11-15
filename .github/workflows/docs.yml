@@ -25,7 +25,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Clean docs folder
+      - name: Clean folder
         run: cargo clean --doc
 
       - name: Build

@@ -6,14 +6,14 @@ on:
       - "**"
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - uses: dtolnay/rust-toolchain@stable
 
-      - name: Check correctness + formatting
+      - name: Compiling, formatting, and testing
         run: |
           cargo fmt --all -- --check
           cargo check
