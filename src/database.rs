@@ -1,6 +1,8 @@
 //! # Redis
 //!
-//! RAM database.
+//! RAM database.  
+//!
+//! Core purpose is to store and lookup user votes and food vote counts. Also, used for atomic increment/decrements.
 //!
 //! ## Requirements
 //!
@@ -18,6 +20,7 @@
 //! - Atomic operations, Redis loads operations into a queue
 //! - Estimated memory usage:
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
+//!
 
 fn choose() {
     println!("Hello, world!");
