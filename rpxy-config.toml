@@ -1,0 +1,33 @@
+# Both or either one of http/https ports must be specified
+listen_port = 8080
+
+[apps]
+[apps.localhost]
+server_name = 'localhost'
+
+[[apps.localhost.reverse_proxy]]
+path = '/hello'
+upstream = [
+  { location = 'localhost:1111' },
+]
+upstream_options = [
+  "keep_original_host",   # [default] do not overwrite HOST value with upstream hostname (like 192.168.xx.x seen from rpxy), which is prior to "set_upstream_host" if both are specified.
+]
+
+[experimental]
+ignore_sni_consistency = false
+connection_handling_timeout = 0
+
+[experimental.h3]
+alt_svc_max_age = 3600           
+request_max_body_size = 65536
+max_concurrent_connections = 10000
+max_concurrent_bidistream = 100
+max_concurrent_unistream = 100
+max_idle_timeout = 10 
+
+[experimental.cache]
+cache_dir = './cache'             
+max_cache_entry = 1000             
+max_cache_each_size = 65535        
+max_cache_each_size_on_memory = 4096
