@@ -12,11 +12,11 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
-    directory: "/deployment/meilisearch"
+    directory: "/deploy/meilisearch"
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
-    directory: "/deployment/redis"
+    directory: "/deploy/redis"
     schedule:
       interval: "daily"
 
