@@ -1,0 +1,5 @@
+services:
+  app_rust:
+    build:
+      context: ../backend
+    image: app_rust:latest

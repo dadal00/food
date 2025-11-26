@@ -3,17 +3,7 @@
 //! [Publishing](https://www.reddit.com/r/rust/comments/195ao81/publishing_documentation_as_github_page/) docs to GitHub Pages.  
 //! [Example Deployment Workflow](https://github.com/dnaka91/advent-of-code/blob/main/.github/workflows/docs.yml#L28)  
 //!
-//! # Setup
 //!
-//! View current docs.
-//! ```sh
-//! cargo doc --open
-//! `````
-//!
-//! Generate docs in `target/doc/packageName/index.html`.
-//! ```sh
-//! cargo doc
-//! `````
 //!
 //! # General Infrastructure
 //! - User goes to VPS public endpoint running Rust reverse proxy
@@ -21,6 +11,8 @@
 //! - Only 1 layer reverse proxy, not 2 unlike previous iterations
 //! - Containers on server machine will talk to each other using internal names
 //! - Ensure ports are exposed on the server machine since LAN not public
+//!
+//!
 //!
 //! # Preventing Server Overload
 //!
@@ -35,6 +27,8 @@
 //! - If so, reject the request as it is certainly not a real human interaction
 //! - If not, allow the request through
 //! - Finally, update the HMAC timestamp, preferably at the end of the request life time
+//!
+//!
 //!
 //! # Notes
 //!
@@ -54,6 +48,68 @@
 //! ## 11/14/25
 //! - 291 unique foods just for todays
 //! - Estimated 291 * 7 = ~2000 foods potential estimate
+//!
+//!
+//!
+//! # Setup
+//!
+//! View current docs.
+//! ```sh
+//! cargo doc --open
+//! `````
+//!
+//! Generate docs in `target/doc/packageName/index.html`.
+//! ```sh
+//! cargo doc
+//! `````
+//!
+//!
+//!
+//! # Deployment
+//!
+//! Build custom images.
+//! ```sh
+//! COMPOSE_BAKE=true docker compose -f deploy/docker.build.yml build
+//! ```
+//!
+//! ## Swarm
+//!
+//! Create.
+//! ```sh
+//! docker swarm init
+//! ```
+//!
+//! Leave.
+//! ```sh
+//! docker swarm leave
+//! ```
+//!
+//! Create secret.
+//! ```sh
+//! echo “secret” | docker secret create SECRET_NAME -
+//! ```
+//!
+//! Create network.
+//! ```sh
+//! docker network create --driver overlay --attachable --opt encrypted app_network
+//! ```
+//!
+//! ## Stack
+//!
+//! Start app.
+//! ```sh
+//! docker stack deploy -c deploy/docker.swarm.yml app
+//! ```
+//!
+//! Start app in debug mode.
+//! ```sh
+//! docker stack deploy -c deploy/docker.swarm.yml app --detach=false
+//! ```
+//!
+//! Kill app.
+//! ```sh
+//! docker stack rm app
+//! ```
 
 pub mod database;
 pub mod foods;

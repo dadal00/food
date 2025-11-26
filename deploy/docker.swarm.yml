@@ -1,0 +1,48 @@
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.15@sha256:fe500cf9cca05cb9f027981583f28eccf17d35d94499c1f8b7b844e7418152fc
+    networks:
+      - app_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    volumes:
+      - ./meili_data:/meili_data
+    secrets:
+      - MEILI_MASTER_KEY
+    command: sh -c "meilisearch --master-key $$(cat /run/secrets/MEILI_MASTER_KEY)"
+
+  redis:
+    image: redis:8.0.2-alpine@sha256:48501c5ad00d5563bc30c075c7bcef41d7d98de3e9a1e6c752068c66f0a8463b
+    networks:
+      - app_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    volumes:
+      - ./redis_data:/data
+
+  rust:
+    image: app_rust:latest
+    networks:
+      - app_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    environment:
+      - RUST_LOG=info
+
+secrets:
+  MEILI_MASTER_KEY:
+    external: true
+
+networks:
+  app_network:
+    external: true
+    name: app_network
