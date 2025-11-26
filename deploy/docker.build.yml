@@ -3,3 +3,13 @@ services:
     build:
       context: ../backend
     image: app_rust:latest
+
+  dummy_meili:
+    build:
+      context: ./meilisearch
+    image: dummy_meili:latest
+
+  dummy_redis:
+    build:
+      context: ./redis
+    image: dummy_redis:latest

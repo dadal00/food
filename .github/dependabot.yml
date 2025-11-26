@@ -8,11 +8,15 @@ updates:
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
-    directory: "/deployment"
+    directory: "/backend"
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
-    directory: "/backend"
+    directory: "/deployment/meilisearch"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/deployment/redis"
     schedule:
       interval: "daily"
 
