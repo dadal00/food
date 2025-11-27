@@ -8,8 +8,11 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
+    secrets:
+      - MEILI_ADMIN_KEY
     environment:
-      - RUST_LOG=info
+      - RUST_LOG=${RUST_LOG}
+      - RUST_PORT=${RUST_PORT}
 
   meilisearch:
     image: dummy_meili:latest
@@ -40,6 +43,8 @@ services:
 
 secrets:
   MEILI_MASTER_KEY:
+    external: true
+  MEILI_ADMIN_KEY:
     external: true
 
 networks:

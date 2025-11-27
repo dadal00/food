@@ -65,53 +65,180 @@
 //!
 //!
 //!
-//! # Deployment
+//! # Just
 //!
-//! Build custom images.
+//! Just is used to run scripts.
+//!
+//! Homebrew
 //! ```sh
-//! COMPOSE_BAKE=true docker compose -f deploy/docker.build.yml build
+//! brew install just
 //! ```
 //!
-//! ## Swarm
-//!
-//! Create.
+//! Linux
 //! ```sh
-//! docker swarm init
+//! apt install just
+//! ```
+//!
+//! Example workflow
+//! ```sh
+//! just leave
+//! just init
+//! just deploy
+//! ```
+//!
+//!
+//!
+//! ## Deployment
+//!
+//! Commands relating to deploying/building.
+//!
+//! ### Swarm
+//!
+//! Initialize.
+//! ```sh
+//! just init
 //! ```
 //!
 //! Leave.
 //! ```sh
-//! docker swarm leave
+//! just leave
 //! ```
 //!
-//! Create secret.
-//! ```sh
-//! echo “secret” | docker secret create SECRET_NAME -
-//! ```
-//!
-//! Create network.
-//! ```sh
-//! docker network create --driver overlay --attachable --opt encrypted app_network
-//! ```
-//!
-//! ## Stack
+//! ### Stack
 //!
 //! Start app.
 //! ```sh
-//! docker stack deploy -c deploy/docker.swarm.yml app
+//! just deploy
 //! ```
 //!
 //! Start app in debug mode.
 //! ```sh
-//! docker stack deploy -c deploy/docker.swarm.yml app --detach=false
+//! just deploy debug
 //! ```
 //!
 //! Kill app.
 //! ```sh
-//! docker stack rm app
+//! just kill
+//! ```
+//!
+//! Clear mounted volumes.
+//! ```sh
+//! just clean
+//! ```
+//!
+//!
+//!
+//! ## Utilities
+//!
+//! Erase all docker data.
+//! ```sh
+//! just erase
 //! ```
 
+use std::{sync::Arc, time::Duration};
+
+use axum::{
+    Json, Router,
+    http::{Method, StatusCode, header::CONTENT_TYPE},
+    response::IntoResponse,
+    routing::get,
+};
+use serde::Deserialize;
+use signal::{
+    ctrl_c,
+    unix::{SignalKind, signal},
+};
+use tokio::{net::TcpListener, signal};
+use tower_http::cors::CorsLayer;
+use tracing::info;
+use tracing_subscriber::{EnvFilter, fmt};
+
+use crate::config::Config;
+
+pub mod config;
 pub mod database;
 pub mod foods;
 pub mod search;
 pub mod user;
+
+pub struct State {
+    pub config: Config,
+}
+
+impl State {
+    fn new() -> Arc<Self> {
+        let config = Config::load();
+
+        Arc::new(Self { config })
+    }
+}
+
+pub async fn start_server() {
+    fmt().with_env_filter(EnvFilter::from_default_env()).init();
+
+    info!("Initializing state...");
+
+    let state = State::new();
+
+    info!("Starting server...");
+
+    let cors = CorsLayer::new()
+        .allow_methods([Method::GET, Method::OPTIONS])
+        .allow_headers([CONTENT_TYPE])
+        .max_age(Duration::from_secs(60 * 60));
+
+    let app = Router::new()
+        .route("/hello", get(hello_handler))
+        .layer(cors)
+        .with_state(state.clone());
+
+    let address = format!("0.0.0.0:{}", state.config.port);
+    info!("Binding to {address}");
+
+    let listener = TcpListener::bind(&address).await.unwrap();
+
+    info!("Server running on {address}");
+
+    axum::serve(listener, app)
+        .with_graceful_shutdown(shutdown_signal())
+        .await
+        .unwrap();
+
+    println!("Server shutting down...");
+}
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        ctrl_c().await.expect("Failed to install Ctrl+C handler");
+
+        info!("Received Ctrl+C, shutting down");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal(SignalKind::terminate())
+            .expect("Failed to install signal handler")
+            .recv()
+            .await;
+
+        info!("Received terminate signal, shutting down");
+    };
+
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
+    }
+}
+
+#[derive(Deserialize)]
+struct Token {
+    token: String,
+}
+
+#[axum::debug_handler]
+async fn hello_handler(Json(payload): Json<Token>) -> impl IntoResponse {
+    (StatusCode::OK, payload.token).into_response()
+}

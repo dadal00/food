@@ -2,13 +2,19 @@
 //!
 //! Search engine to provide all food options directly to the user by proxy.
 //!
+//!
+//!
 //! ## Schema
 //! - Index for all foods
 //! - Fields: name (**string**), votes (**int**), location (**string**, default is "None")
 //!
+//!
+//!
 //! ## Cron Job
 //! - Every 1-5 minutes, we will run through the Redis hash for foods and sync the votes with Meilisearch
 //! - Should just be (name: **string**, votes:**int**)
+//!
+//!
 //!
 //! ## Proxy
 //! We could expose Meilisearch directly to the frontend. But, we believe the
@@ -36,3 +42,12 @@
 //! a 1) smaller payload and 2) faster encoding/decoding scheme, we dramatically
 //! reduce the work needed on the frontend. This can be especially beneficial
 //! when having multiple searches per second.
+//!
+//!
+//!
+//! ## Commands
+//!
+//! Grab relevant keys.
+//! ```sh
+//! curl -H "Authorization: Bearer $(cat /run/secrets/MEILI_MASTER_KEY)" http://localhost:7700/keys
+//! ```
