@@ -19,22 +19,28 @@ jobs:
       - uses: taiki-e/install-action@just
 
       - name: Build
-        run: just build app_rust
+        run: just build custom
 
       - name: Push, if on main
         if: github.ref == 'refs/heads/main'
         run: |
+          set -a
+          source .env
+          set +a
+
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-          LOCAL="app_rust:latest"
-          REMOTE="ghcr.io/${{ github.repository_owner }}/app_rust"
+          for CUSTOM in ${CUSTOM_IMAGES}; do
+            LOCAL="${CUSTOM}:latest"
+            REMOTE="ghcr.io/${{ github.repository_owner }}/${CUSTOM}"
 
-          REMOTE_LATEST="$REMOTE:latest"
-          SHA="${{ github.sha }}"
-          REMOTE_SHA="$REMOTE:${SHA::7}"
+            REMOTE_LATEST="$REMOTE:latest"
+            SHA="${{ github.sha }}"
+            REMOTE_SHA="$REMOTE:${SHA::7}"
 
-          docker tag "$LOCAL" "$REMOTE_LATEST"
-          docker tag "$LOCAL" "$REMOTE_SHA"
+            docker tag "$LOCAL" "$REMOTE_LATEST"
+            docker tag "$LOCAL" "$REMOTE_SHA"
 
-          docker push "$REMOTE_LATEST"
-          docker push "$REMOTE_SHA"
+            docker push "$REMOTE_LATEST"
+            docker push "$REMOTE_SHA"
+          done
