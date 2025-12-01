@@ -66,11 +66,11 @@ grab-meili-key:
 build service="all":
 	if [ "{{service}}" == "all" ]; then \
 		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build; \
-	elif [ "{{service}}" == "custom" ]; then \
-		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build ${CUSTOM_IMAGES}; \
 	else \
 		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build {{service}}; \
 	fi
+	# elif [ "{{service}}" == "custom" ]; then \
+	# 	envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build ${CUSTOM_IMAGES}; \
 
 deploy mode="default":	
 	just build
