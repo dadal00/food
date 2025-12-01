@@ -64,6 +64,7 @@ grab-meili-key:
 
 
 # Deployment 
+# Debug deployment only finishes if containers sucessfully created
 [doc]
 build service="all":
 	if [ "{{service}}" == "all" ]; then \

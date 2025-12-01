@@ -1,0 +1,366 @@
+{
+  "data": {
+    "diningCourts": [
+      {
+        "formalName": "1bowl at Meredith Hall",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Earhart Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast",
+              "stations": []
+            },
+            {
+              "name": "Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Earhart On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Ford Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast",
+              "stations": []
+            },
+            {
+              "name": "Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Ford On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Hillenbrand Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Brunch",
+              "stations": []
+            },
+            {
+              "name": "Lunch",
+              "stations": []
+            },
+            {
+              "name": "Late Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Lawson On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Pete's Za at Tarkington Hall",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch/Dinner",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Sushi Boss at Meredith Hall",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Sushi Boss",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "California Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crab Philly Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crunchy Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Firecracker Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Greenhouse Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Philadelphia Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Shrimpin Aint Easy Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy California Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Crab Rangoon Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Salmon Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Tuna Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Charashi Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Crab Salad Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tropical Spicy Shrimp Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hawaiian Poke Bowl"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Wiley Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast",
+              "stations": []
+            },
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "Classic Flavors",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Grilled Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ds Cont Soup Streetside 8/10 oz"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chunky Tomato Basil Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Peas"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Gluten Friendly",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Smoked Pork Chop"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Maple Baked Beans"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Classic Flavors",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "General Tso Chicken"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Long Grain Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mini Spring Rolls"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Broccoli"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Gluten Friendly",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cajun Pollock"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Eggplant Tofu Stir Fry"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Windsor Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch",
+              "stations": []
+            },
+            {
+              "name": "Late Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Windsor On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": []
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

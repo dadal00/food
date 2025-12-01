@@ -1,0 +1,4138 @@
+{
+  "data": {
+    "diningCourts": [
+      {
+        "formalName": "1bowl at Meredith Hall",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Purdue Pete Chicken Bowl"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Purdue Pete Vegetarian Chicken Bowl"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salads",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salads and Wraps"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Yogurt Bowl",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Yogurt & Fruit Bowl"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Purdue Pete Chicken Bowl"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Purdue Pete Vegetarian Chicken Bowl"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salads",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salads and Wraps"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Yogurt Bowl",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Yogurt & Fruit Bowl"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Earhart Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast",
+              "stations": [
+                {
+                  "name": "Granite Grill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Scrambled Eggs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ham and Cheese Quiche"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Seasoned Fried Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Smokey Links"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hard Cooked Eggs"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "The Pastry Shop",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cinnamon Nut Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vanilla Yogurt"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Strawberry Yogurt"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kiwi"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pineapple Chunks"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Dark Chocolate Sea Salt Seed'nola"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Gluten Free Granola"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Cream Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Margarine"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crunchy Peanut Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Creamy Peanut Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grape Jelly"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Strawberry Jelly"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Plain Bagel"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberry Bagel"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Wheat Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "English Muffin"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Oatmeal Bar",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Oatmeal"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sliced Strawberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Dried Apricots"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Raisins"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cinnamon"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Brown Sugar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pancakes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sugar Free Maple Pancake Syrup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pancake Syrup"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Patty Breakfast Vegetarian"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "Granite Grill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Flame Grilled Chicken Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sundried Tomato Aioli"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Herb Roasted Tomatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sliced Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Leaf Lettuce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Brioche Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Waffle Fries"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Heartland Classics",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Baked Potato Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Aviator Snacks",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Buffalo Chicken Dip"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Queso Blanco Cheese Sauce w Salsa Verde"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Jalapeno Popper Dip"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tri Color Tortilla Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "The Gallery",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chinese Spicy Pork with Rice Noodles"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mini Spring Rolls"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tempura Sweet and Sour Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Long Grain Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fried Rice"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "The Pastry Shop",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "White Chocolate Macadamia Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Andes Mint Chocolate Cake"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberry Crisp"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salad Stop",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kiwi"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pineapple Chunks"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Dark Chocolate Sea Salt Seed'nola"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Souper Deli",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hot Dog Bun"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Granite Grill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Nsayel's Chicken Drumsticks"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Seasoned Curly Fries"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Heartland Classics",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Country Fried Steak"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Country Gravy"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Green Beans"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Quinoa and Peppers"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Honey Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Honey Butter Rolls"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Aviator Snacks",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Buffalo Chicken Dip"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Queso Blanco Cheese Sauce w Salsa Verde"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Jalapeno Popper Dip"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tri Color Tortilla Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "The Gallery",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chinese Spicy Pork with Rice Noodles"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mini Spring Rolls"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tempura Sweet and Sour Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Long Grain Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fried Rice"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "The Pastry Shop",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "White Chocolate Macadamia Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Andes Mint Chocolate Cake"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberry Crisp"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salad Stop",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kiwi"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pineapple Chunks"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Dark Chocolate Sea Salt Seed'nola"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Souper Deli",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hot Dog Bun"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Earhart On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Plain Bagel"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberry Bagel"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Bananas"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Gala Apples"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Clementine Cutie/Halo 30#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ham & Turkey Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kickin Chicken Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Classic Italian Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "PB&J Crunch Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Hummus Wrap"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Ford Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast",
+              "stations": [
+                {
+                  "name": "BoilerQ",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Scrambled Eggs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hard Cooked Eggs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fried Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ham Egg & Swiss Bake"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sliced Smoked Polish Sausage"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salami and Swiss",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Bread and Condiments"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Oatmeal and Pancake Toppers"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pancakes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Oatmeal"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Sugar Hill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Assorted Donuts"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salads",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Fresh Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fresh pineapple"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Udi's Plain GF Bagel"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Double Chocolate Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "BoilerQ",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Mini Corn Dogs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cavatappi Macaroni and Beer Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Breaded Onion Rings"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Zesty Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Honey Mustard Dressing"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Potāto, Potäto",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Baked Potato"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cheese Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Bacon Bits"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Broccoli"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Shredded Cheddar Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Diced Tomatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sour Cream"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chopped Green Onions"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Baked Sweet Potato"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cinnamon Honey Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Chickpeas"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "International Market",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Stir Fry Chicken & Broccoli"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Jasmine Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Stir Fry Cauliflower"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Parmesan Tomato",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Supreme Pizza"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Four Cheese Pizza"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salami and Swiss",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kettle Potato Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Sugar Hill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Sundae Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Double Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Apple Nut Cake"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Lemon crunch pie "
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Simple Servings",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Baked Potato"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fresh Broccoli Florets"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Chickpeas"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salads",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Baked Potato Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fresh Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mandarin Oranges"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Cauliflower Pizza Crust"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Double Chocolate Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "BoilerQ",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Mini Corn Dogs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cavatappi Macaroni and Beer Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Breaded Onion Rings"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Zesty Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Honey Mustard Dressing"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Potāto, Potäto",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Beef Steak Ancho Chile"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Baked Potato"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Fresh Asparagus"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sour Cream"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whipped Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Shredded Cheddar Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Chickpeas"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Wild Rice Pilaf with Sundried Tomatoes"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "International Market",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Stir Fry Chicken & Broccoli"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Jasmine Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Stir Fry Cauliflower"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Parmesan Tomato",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Supreme Pizza"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Four Cheese Pizza"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salami and Swiss",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kettle Potato Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Sugar Hill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Sundae Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Double Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Apple Nut Cake"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Lemon Meringue Pie"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Simple Servings",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Baked Potato"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Fresh Asparagus"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Chickpeas"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Salads",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Baked Potato Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Fresh Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mandarin Oranges"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Cauliflower Pizza Crust"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Double Chocolate Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Ford On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Reuben Sandwich"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mozzarella Tomato Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Classic Italian Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Trio Slider Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Nutella Berry Crunch Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kickin Chicken Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Wrap"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Hummus Wrap"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Reuben Sandwich"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mozzarella Tomato Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Classic Italian Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Trio Slider Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Nutella Berry Crunch Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kickin Chicken Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Wrap"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Hummus Wrap"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Hillenbrand Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Brunch",
+              "stations": []
+            },
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "Clickbait",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Rotini"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Marinara Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crushed Red Pepper"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grated Parmesan Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garlic Texas Toast"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Chef Choice",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Greek Mozzarella Fish"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Garlic Herb Fingerling Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Cookie Cache",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cherry Pie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tres Leches Cake"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Bit by Bit",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Sandwich Toppers"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Breaded Pork Tenderloin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crinkle Cut Fries"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Big Bytes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Lasagna"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garlic Texas Toast"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Data Crunch",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Yogurt Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mango Cubes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Peach Slices"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Firewall",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Grilled Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cream of Tomato Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Loaded Potato Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kettle Potato Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "SafeBytes - Top 9 Free",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Thighs with Princess Rub"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Garlic Herb Fingerling Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Allergy Free Mixed Fruit Crisp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Vegan Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegetarian Chicken Nugget"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Late Lunch",
+              "stations": [
+                {
+                  "name": "Clickbait",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Rotini"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Marinara Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crushed Red Pepper"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grated Parmesan Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garlic Texas Toast"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Chef Choice",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Greek Mozzarella Fish"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Garlic Herb Fingerling Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Cookie Cache",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cherry Pie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tres Leches Cake"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Bit by Bit",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Sandwich Toppers"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Breaded Pork Tenderloin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crinkle Cut Fries"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Data Crunch",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Yogurt Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mango Cubes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Peach Slices"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Firewall",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Grilled Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cream of Tomato Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Loaded Potato Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kettle Potato Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "SafeBytes - Top 9 Free",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Thighs with Princess Rub"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Garlic Herb Fingerling Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Allergy Free Mixed Fruit Crisp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Vegan Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegetarian Chicken Nugget"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Clickbait",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Rotini"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Marinara Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crushed Red Pepper"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grated Parmesan Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garlic Texas Toast"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Chef Choice",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Greek Mozzarella Fish"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Garlic Herb Fingerling Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Cookie Cache",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cherry Pie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tres Leches Cake"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Bit by Bit",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Sandwich Toppers"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Breaded Pork Tenderloin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crinkle Cut Fries"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Big Bytes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Parmigiana"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garlic Texas Toast"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Data Crunch",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Yogurt Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mango Cubes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Peach Slices"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Firewall",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Grilled Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cream of Tomato Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Loaded Potato Soup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kettle Potato Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "SafeBytes - Top 9 Free",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Thighs with Princess Rub"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Garlic Herb Fingerling Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Allergy Free Mixed Fruit Crisp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Whole Green Beans"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Vegan Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegetarian Chicken Nugget"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Lawson On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Breakfast Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grilled Cheese with Garlic Butter"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "California Dreaming Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Club"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Wrap"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chicken Bacon Ranch Wrap"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Sub"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Turkey Sub"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Grab & Go",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Assorted Donuts"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Strawberry Granola Parfait"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chef Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "PB&J Crunch Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Nutella Berry Crunch Sandwich"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Pete's Za at Tarkington Hall",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch/Dinner",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "CheesZa"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Zapperoni"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Saus-Zage"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "VeggieZ"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garlic CheeZY Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Brownie DeZZert Za"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Cookie DeZZert Za"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Za Meatz"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hot Honey Zapperoni"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Grab & Go",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Buffalo Style Chicken Salad Bites"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Energy Bites"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Quinoa Hummus & Veggie Bites"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chef Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Mozzarella Tomato Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Classic Italian Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ham & Dijon Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ham & Turkey Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Kickin Chicken Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Nutella Berry Crunch Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "PB&J Crunch Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Trio Slider Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tuna Salad on 9 Grain"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Turkey & Cheddar on Sourdough"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Wrap"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Club Wrap"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Hummus Wrap"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": []
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Sushi Boss at Meredith Hall",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "Sushi Boss",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "California Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crab Philly Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crunchy Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Firecracker Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Greenhouse Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Philadelphia Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Shrimpin Aint Easy Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy California Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Crab Rangoon Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Salmon Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Tuna Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hawaiian Poke Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tropical Spicy Shrimp Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Charashi Bowl"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Sushi Boss",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "California Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crab Philly Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crunchy Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Firecracker Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Greenhouse Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Philadelphia Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Shrimpin Aint Easy Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy California Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Crab Rangoon Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Salmon Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Tuna Roll"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Charashi Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Spicy Crab Salad Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tropical Spicy Shrimp Bowl"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hawaiian Poke Bowl"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Wiley Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast",
+              "stations": [
+                {
+                  "name": "Romeo & Parmesan",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Oatmeal Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Classic Flavors",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Scrambled Eggs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sausage Links"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Seasoned Fried Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hard Cooked Eggs"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chamoy Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tropical Fruit Salad"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Delectables",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Assorted Donuts"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Dessert Bread Chocolate Chip"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Margarine Cup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Udi's Plain GF Bagel"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "La Fonda",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Carnitas"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cilantro Green Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "6\" Yellow Corn Tortilla"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "5\" Flour Tortilla"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pickled Onions and Jalapenos"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "La Fonda Station"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Santa Fe Corn"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Romeo & Parmesan",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Garlic Herb Chicken Strip"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sizzling Pasta"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Classic Flavors",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Smash Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crinkle Cut Fries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sauteed Mushrooms"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Caramelized Onions"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Smashin' Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Burger Toppings"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "California Vegetables"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Mozzarella Fresca",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cheese Pizza"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chamoy Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tropical Fruit Salad"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Gluten Friendly",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Wiley's Buffalo Lime Chicken Thighs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Long Grain Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "California Vegetables"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Delectables",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Lemon Meringue Pie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Apple Crisp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Cookie"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Vegetarian Cheesy Calabacita Bake"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "California Vegetables"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Double Chocolate Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "La Fonda",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Carnitas"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cilantro Green Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Marlow's Esquite Corn"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "5\" Flour Tortilla"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pickled Onions and Jalapenos"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "La Fonda Station"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Romeo & Parmesan",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Rotini"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Marinara Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Shredded 3 Cheese Blend"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grated Parmesan Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Crushed Red Pepper"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Classic Flavors",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Breaded Chicken Strips"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Seasoned Curly Fries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Marshall's Honey Mustard"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Hidden Valley Ranch Dressing"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ken's Cannonball BBQ Sauce"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Mozzarella Fresca",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cheese Pizza"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chamoy Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tropical Fruit Salad"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Gluten Friendly",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Wiley's Buffalo Lime Chicken Thighs"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Long Grain Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Broccoli Florets"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Delectables",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Lemon Meringue Pie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Apple Crisp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Chocolate Chip Cookie"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Jalapeno Popper Dip"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Tortilla Chips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Mozzarella Cheese"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Double Chocolate Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Blueberry Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Windsor Dining Court",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Lunch",
+              "stations": [
+                {
+                  "name": "SoHo International Market",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Caribbean Jerk Chicken"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Sweet Whipped Potatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cheddar Jalapeno Cornbread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Broccoli Florets"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Halal",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Chasni Halal"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sticky Coconut Thai Rice"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Regent Grill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Bang Bang Shrimp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sticky Coconut Thai Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Green Onion"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Diced Tomatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cilantro"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Red Cabbage"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "8\" Flour Tortilla"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Broccoli Florets"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Portobello Road - Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cauliflower and Chickpeas with Pasta"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grilled Broccoli and Mushrooms"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Texas Toast Garlic Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Asparagus Cuts & Tips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Pasta Bar",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cheese Lasagna Rollup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Asparagus Cuts & Tips"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pasta Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Chelsea Garden",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Watermelon Slices"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Grain Central Station",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Elote Quinoa Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Rotini Pasta Salad"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Abby Road Deli",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Devonshire Way",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Browned Butter Blueberry Cobbler"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Coconut Cream Pie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Snickerdoodle Cookie"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Late Lunch",
+              "stations": [
+                {
+                  "name": "Halal",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Chasni Halal"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sticky Coconut Thai Rice"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Regent Grill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Bang Bang Shrimp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sticky Coconut Thai Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Green Onion"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Diced Tomatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cilantro"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Red Cabbage"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "8\" Flour Tortilla"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Broccoli Florets"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Pasta Bar",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cheese Lasagna Rollup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Asparagus Cuts & Tips"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pasta Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Chelsea Garden",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Watermelon Slices"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Grain Central Station",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Elote Quinoa Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Rotini Pasta Salad"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Abby Road Deli",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Devonshire Way",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Browned Butter Blueberry Cobbler"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Coconut Cream Pie"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "SoHo International Market",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Turkey Breast Halal"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Butternut Squash with Honey and Thyme"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Ranch Potato Wedges"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Asparagus Cuts & Tips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Halal",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Chasni Halal"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Indian Mango Chutney"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sticky Coconut Thai Rice"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Regent Grill",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Bang Bang Shrimp"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "8\" Flour Tortilla"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Sticky Coconut Thai Rice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Red Cabbage"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Cilantro"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Diced Tomatoes"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Green Onion"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Broccoli Florets"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Portobello Road - Vegetarian",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cauliflower and Chickpeas with Pasta"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Grilled Broccoli and Mushrooms"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Texas Toast Garlic Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Asparagus Cuts & Tips"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Pasta Bar",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Cheese Lasagna Rollup"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Alfredo Sauce"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Roasted Asparagus Cuts & Tips"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Pasta Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Chelsea Garden",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Watermelon Slices"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Blueberries"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Salad Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Grain Central Station",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Elote Quinoa Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Rotini Pasta Salad"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Abby Road Deli",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Deli Bar"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Devonshire Way",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Browned Butter Blueberry Cobbler"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Coconut Cream Pie"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "By Request",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Italian Ice"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Cookie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Homefree Chocolate Chip Brownie"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF White Bread"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "GF Hamburger Bun"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Malibu Burger"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Vegan Shredded Mozzarella Cheese"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "formalName": "Windsor On-the-GO!",
+        "dailyMenu": {
+          "meals": [
+            {
+              "name": "Breakfast/Lunch",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Bacon Egg Cheese Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Egg & Cheese Bagel"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fruit",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Gala Apples"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Bananas"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Oven Roasted Turkey on Sprouted Grain"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Classic Italian Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Hummus Wrap"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Dinner",
+              "stations": [
+                {
+                  "name": "Main Course",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Bacon Egg Cheese Muffin"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Egg & Cheese Bagel"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fresh Tastes",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Chicken Caesar Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Garden Salad"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Oven Roasted Turkey on Sprouted Grain"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Classic Italian Sandwich"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Veggie Hummus Wrap"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Fruit",
+                  "items": [
+                    {
+                      "item": {
+                        "name": "Gala Apples"
+                      }
+                    },
+                    {
+                      "item": {
+                        "name": "Bananas"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

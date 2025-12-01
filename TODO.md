@@ -4,6 +4,7 @@
 - [ ] Rust communication with proxy (exposing ports)
 - [ ] Rust communication with other containers
 - [ ] Basic frontend
+- [ ] Unit tests for config?
 
 # Done
 
