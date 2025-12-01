@@ -7,6 +7,11 @@
 
 # Done
 
+## 12/01/25
+
+- [x] Docker image build, push, and prune CI
+- [x] Just shell fix, specify bash
+
 ## 11/27/25
 
 - [x] Docker secret setup
