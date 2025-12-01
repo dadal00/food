@@ -35,12 +35,19 @@ jobs:
             REMOTE="ghcr.io/${{ github.repository_owner }}/${CUSTOM}"
 
             REMOTE_LATEST="$REMOTE:latest"
+
             SHA="${{ github.sha }}"
-            REMOTE_SHA="$REMOTE:${SHA::7}"
+            REMOTE_SHA="$REMOTE:${SHA:0:7}"
+
+            RAW_MSG="${{ github.event.head_commit.message }}"
+            SANITIZED_MSG=$(echo "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
+            REMOTE_MSG="$REMOTE:${SANITIZED_MSG:-"no-msg"}"
 
             docker tag "$LOCAL" "$REMOTE_LATEST"
             docker tag "$LOCAL" "$REMOTE_SHA"
+            docker tag "$LOCAL" "$REMOTE_MSG"
 
             docker push "$REMOTE_LATEST"
             docker push "$REMOTE_SHA"
+            docker push "$REMOTE_MSG"
           done

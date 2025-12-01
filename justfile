@@ -1,5 +1,6 @@
 # Sets environment
 set dotenv-filename := ".env"
+# Specify shell
 set shell := ["bash", "-uc"]
 
 
