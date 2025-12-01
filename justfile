@@ -13,7 +13,7 @@ hex:
 # Docker Utilities
 [doc]
 erase:
-	docker system prune -a --volumes
+	yes | docker system prune -a --volumes
 
 join:
 	docker swarm init
@@ -63,8 +63,15 @@ grab-meili-key:
 
 # Deployment 
 [doc]
+build service="all":
+	if [ "{{service}}" == "all" ]; then \
+		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build; \
+	else \
+		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build {{service}}; \
+	fi
+
 deploy mode="default":	
-	envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build
+	just build
 
 	if [ "{{mode}}" == "debug" ]; then \
 		envsubst < deploy/docker.swarm.yml | docker stack deploy -c deploy/docker.swarm.yml app --detach=false; \
