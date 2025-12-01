@@ -1,5 +1,6 @@
 # Sets environment
 set dotenv-filename := ".env"
+set shell := ["bash", "-uc"]
 
 
 
@@ -64,9 +65,9 @@ grab-meili-key:
 # Deployment 
 [doc]
 build service="all":
-	if [[ "{{service}}" == "all" ]]; then \
+	if [ "{{service}}" == "all" ]; then \
 		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build; \
-	elif [[ "{{service}}" == "custom" ]]; then \
+	elif [ "{{service}}" == "custom" ]; then \
 		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build ${CUSTOM_IMAGES}; \
 	else \
 		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build {{service}}; \
@@ -75,7 +76,7 @@ build service="all":
 deploy mode="default":	
 	just build
 
-	if [[ "{{mode}}" == "debug" ]]; then \
+	if [ "{{mode}}" == "debug" ]; then \
 		envsubst < deploy/docker.swarm.yml | docker stack deploy -c deploy/docker.swarm.yml app --detach=false; \
 	else \
 	 	envsubst < deploy/docker.swarm.yml | docker stack deploy -c deploy/docker.swarm.yml app --detach=true; \
