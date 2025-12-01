@@ -13,15 +13,15 @@
 //!   extended by a new bitmap when a new location is added.
 //!
 //! ### External
-//! - External proto file for food name (**string**) to index (**int**): Allows food indexing in bitmaps such as user vote bitmaps and location bitmaps.
+//! - External proto file for food name (**string**) in index ordering (implied index): Allows food indexing in bitmaps such as user vote bitmaps and location bitmaps.
 //!   Also allows syncing indexing between frontend (assuming dynamic fetch) and backend.
 //!   - Loaded in-memory.
 //!
-//! - External proto file for list of food names (**string**), ordered by their index: Allows frontend to decode backend responses. In addition, no need for
-//!   previous mapping for the frontend. Everything can be done by indexing. Must be synced with previous.
-//!
-//! - External location file for location (**string**) to index (**int**): Used in location indexing in location bitmaps for frontend and backend.
+//! - External location file for location (**string**) in index ordering (implied index): Used in location indexing in location bitmaps for frontend and backend.
 //!   - Loaded in-memory.
+//!
+//! #### Notes
+//! - Only repeated fields in .proto preserves the index ordering, otherwise implied ordering will be lost.
 //!
 //! ### Redis
 //! - Redis hash for users (**string**) to votes (**bitmap**): O(1) lookups to fetch user votes. Used to fetch user votes and atomic operations to
@@ -74,3 +74,141 @@
 //!
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
+
+use std::{
+    collections::{HashMap, HashSet},
+    process::exit,
+};
+
+use chrono::prelude::*;
+use reqwest::Client;
+use serde::Deserialize;
+use serde_json::json;
+
+const ENDPOINT: &str = "https://api.hfs.purdue.edu/menus/v3/GraphQL";
+
+const QUERY: &str = r#"
+    query getFoodNames($date: Date!) {
+        diningCourts {
+            formalName
+            dailyMenu(date: $date) {
+                meals {
+                    name
+                    stations {
+                        name
+                        items {
+                            item {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+"#;
+
+#[derive(Deserialize)]
+struct Response {
+    data: Data,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct Data {
+    dining_courts: Vec<DiningCourt>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct DiningCourt {
+    formal_name: String,
+    daily_menu: DailyMenu,
+}
+
+#[derive(Deserialize)]
+struct DailyMenu {
+    meals: Vec<Meal>,
+}
+
+#[derive(Deserialize)]
+struct Meal {
+    name: String,
+    stations: Vec<Station>,
+}
+
+#[derive(Deserialize)]
+struct Station {
+    name: String,
+    items: Vec<ItemShell>,
+}
+
+#[derive(Deserialize)]
+struct ItemShell {
+    item: Item,
+}
+
+#[derive(Deserialize)]
+struct Item {
+    name: String,
+}
+
+struct InternalItem {
+    name: String,
+    locations: Option<HashSet<String>>,
+}
+
+pub async fn get_foods() {
+    let client = Client::new();
+    let payload = build_payload(&today_formatted());
+    let res = client.post(ENDPOINT).json(&payload).send().await.unwrap();
+
+    println!("Status: {}", res.status());
+
+    let json_string = res.text().await.unwrap();
+    let json: Response = serde_json::from_str(&json_string).unwrap();
+
+    let mut dining_courts: Vec<String> = Vec::new();
+    let mut items: HashMap<String, InternalItem> = HashMap::new();
+
+    for court in json.data.dining_courts {
+        dining_courts.push(court.formal_name.clone());
+        let court_name = court.formal_name.clone();
+        for meal in court.daily_menu.meals {
+            for station in meal.stations {
+                for item_shell in station.items {
+                    let item_name = item_shell.item.name.clone();
+
+                    items
+                        .entry(item_name.clone())
+                        .and_modify(|existing_item| {
+                            let locs = existing_item.locations.get_or_insert_with(HashSet::new);
+                            locs.insert(court_name.clone());
+                        })
+                        .or_insert_with(|| InternalItem {
+                            name: item_name,
+                            locations: Some(HashSet::from([court_name.clone()])),
+                        });
+                }
+            }
+        }
+    }
+
+    println!("Locations: {}", dining_courts.len());
+    println!("Items: {}", items.capacity());
+
+    exit(0);
+}
+
+fn build_payload(date: &str) -> serde_json::Value {
+    json!({
+        "operationName": "getLocationMenu",
+        "variables": { "date": date },
+        "query": QUERY
+    })
+}
+
+fn today_formatted() -> String {
+    let today = Local::now().date_naive();
+    today.format("%Y-%m-%d").to_string()
+}

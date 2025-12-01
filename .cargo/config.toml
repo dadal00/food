@@ -1,0 +1,2 @@
+[alias]
+process = "run --features process"
