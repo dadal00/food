@@ -21,10 +21,18 @@ jobs:
         run: just build app_rust
 
       - name: Push, if on main
+        if: github.ref == 'refs/heads/main'
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-          remote_image="ghcr.io/${{ github.repository_owner }}/app_rust"
-          docker tag "app_rust:latest" "$remote_image"
+          LOCAL="app_rust:latest"
+          REMOTE="ghcr.io/${{ github.repository_owner }}/app_rust"
 
-          docker push "$remote_image"
+          REMOTE_LATEST="$REMOTE:latest"
+          REMOTE_SHA="$REMOTE:${${{ github.sha }}::7}"
+
+          docker tag "$LOCAL" "$REMOTE_LATEST"
+          docker tag "$LOCAL" "$REMOTE_SHA"
+
+          docker push "$REMOTE_LATEST"
+          docker push "$REMOTE_SHA"
