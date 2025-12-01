@@ -1,16 +1,17 @@
-name: Docker
+name: Docker Build
 
 on:
   push:
     branches:
       - "**"
 
+permissions:
+  packages: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
 
     steps:
       - uses: actions/checkout@v6
@@ -29,7 +30,8 @@ jobs:
           REMOTE="ghcr.io/${{ github.repository_owner }}/app_rust"
 
           REMOTE_LATEST="$REMOTE:latest"
-          REMOTE_SHA="$REMOTE:${${{ github.sha }}::7}"
+          SHA="${{ github.sha }}"
+          REMOTE_SHA="$REMOTE:${$SHA::7}"
 
           docker tag "$LOCAL" "$REMOTE_LATEST"
           docker tag "$LOCAL" "$REMOTE_SHA"
