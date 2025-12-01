@@ -31,7 +31,7 @@ jobs:
 
           REMOTE_LATEST="$REMOTE:latest"
           SHA="${{ github.sha }}"
-          REMOTE_SHA="$REMOTE:${$SHA::7}"
+          REMOTE_SHA="$REMOTE:${SHA::7}"
 
           docker tag "$LOCAL" "$REMOTE_LATEST"
           docker tag "$LOCAL" "$REMOTE_SHA"
