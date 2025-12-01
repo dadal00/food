@@ -48,6 +48,4 @@ jobs:
             docker tag "$LOCAL" "$REMOTE_MSG"
 
             docker push "$REMOTE_LATEST"
-            docker push "$REMOTE_SHA"
-            docker push "$REMOTE_MSG"
           done
