@@ -6,17 +6,18 @@
 - [ ] Basic frontend
 - [ ] Unit tests for config?
 - [ ] Unit tests for process
-- [ ] Cron job for process
-- [ ] Proto file
 - [ ] Monitoring stack
 - [ ] Mount proto files
+- [ ] Future Docker protoc installation
 
 # Done
 
 ## 12/02/25
 
 - [x] Rust workspace for process and server
-- [*] Rust shear CI
+- [x] Rust shear CI
+- [x] Proto file
+- [x] Cron job for process
 
 ## 12/01/25
 
