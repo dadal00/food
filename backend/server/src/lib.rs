@@ -157,7 +157,6 @@ use crate::config::Config;
 
 pub mod config;
 pub mod database;
-pub mod foods;
 pub mod search;
 pub mod user;
 
