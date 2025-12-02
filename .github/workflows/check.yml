@@ -36,6 +36,6 @@ jobs:
         uses: cargo-bins/cargo-binstall@main
 
       - name: Install cargo-shear
-        run: cargo binstall --no-confirm cargo-shear
+        run: cargo binstall --no-confirm cargo-shear --force
 
       - run: cargo shear
