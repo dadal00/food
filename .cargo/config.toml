@@ -1,2 +1,3 @@
 [alias]
-process = "run --features process"
+server = "run -p server"
+process = "run -p server --features process"

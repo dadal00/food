@@ -7,7 +7,7 @@ RUN apk add --no-cache musl-dev openssl-dev pkgconfig
 WORKDIR /app
 COPY ./ /app
 
-RUN cargo build --release
+RUN cargo build --release -p server
 RUN strip target/release/server
 
 FROM alpine:3.22@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412
