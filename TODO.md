@@ -1,14 +1,18 @@
 # TODO List
 
-- [ ] Food processing code
+- [ ] Unit tests for config?
+- [ ] Unit tests for process
+
+- [ ] Monitoring stack
+
 - [ ] Rust communication with proxy (exposing ports)
 - [ ] Rust communication with other containers
 - [ ] Basic frontend
-- [ ] Unit tests for config?
-- [ ] Unit tests for process
-- [ ] Monitoring stack
 - [ ] Mount proto files
 - [ ] Future Docker protoc installation
+
+- [ ] Proxy custom token cache check
+- [ ] Proxy custom Docker image
 
 # Done
 
@@ -17,7 +21,8 @@
 - [x] Rust workspace for process and server
 - [x] Rust shear CI
 - [x] Proto file
-- [x] Cron job for process
+- [x] Food processing
+- [x] Repo cron job for foods
 
 ## 12/01/25
 
