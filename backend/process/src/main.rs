@@ -1,4 +1,4 @@
 #[tokio::main]
 async fn main() {
-    process::get_foods().await;
+    process::fetch_foods().await;
 }

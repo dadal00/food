@@ -75,15 +75,19 @@
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
 
-use std::{
-    collections::{HashMap, HashSet},
-    process::exit,
-};
+use std::{collections::HashSet, fs};
 
 use chrono::prelude::*;
+use prost::Message;
 use reqwest::Client;
 use serde::Deserialize;
 use serde_json::json;
+
+pub mod foods {
+    include!(concat!(env!("OUT_DIR"), "/foods.rs"));
+}
+
+use foods::Bank;
 
 const ENDPOINT: &str = "https://api.hfs.purdue.edu/menus/v3/GraphQL";
 
@@ -153,51 +157,62 @@ struct Item {
     name: String,
 }
 
-struct InternalItem {
-    name: String,
-    locations: Option<HashSet<String>>,
-}
+pub async fn fetch_foods() {
+    let data = fs::read("../bank.bin").unwrap();
+    let mut bank: Bank = Bank::decode(&*data).unwrap();
 
-pub async fn get_foods() {
+    let mut seen: HashSet<String> = HashSet::from_iter(bank.items.clone());
+    seen.extend(bank.locations.clone());
+
+    println!("Loaded Items: {}", bank.items.len());
+    println!("Loaded Locations: {}\n", bank.locations.len());
+
     let client = Client::new();
     let payload = build_payload(&today_formatted());
     let res = client.post(ENDPOINT).json(&payload).send().await.unwrap();
 
-    println!("Status: {}", res.status());
+    println!("Status: {}\n", res.status());
 
     let json_string = res.text().await.unwrap();
     let json: Response = serde_json::from_str(&json_string).unwrap();
 
-    let mut dining_courts: Vec<String> = Vec::new();
-    let mut items: HashMap<String, InternalItem> = HashMap::new();
-
+    let mut new_locations = 0;
+    let mut new_items = 0;
     for court in json.data.dining_courts {
-        dining_courts.push(court.formal_name.clone());
-        let court_name = court.formal_name.clone();
+        if !seen.contains(&court.formal_name) {
+            println!("New location! {}", court.formal_name);
+
+            bank.locations.push(court.formal_name.clone());
+            seen.insert(court.formal_name);
+
+            new_locations += 1;
+        }
+
         for meal in court.daily_menu.meals {
             for station in meal.stations {
                 for item_shell in station.items {
-                    let item_name = item_shell.item.name.clone();
+                    if !seen.contains(&item_shell.item.name) {
+                        println!("New item! {}", item_shell.item.name);
 
-                    items
-                        .entry(item_name.clone())
-                        .and_modify(|existing_item| {
-                            let locs = existing_item.locations.get_or_insert_with(HashSet::new);
-                            locs.insert(court_name.clone());
-                        })
-                        .or_insert_with(|| InternalItem {
-                            name: item_name,
-                            locations: Some(HashSet::from([court_name.clone()])),
-                        });
+                        bank.items.push(item_shell.item.name.clone());
+                        seen.insert(item_shell.item.name);
+
+                        new_items += 1;
+                    }
                 }
             }
         }
     }
 
-    println!("Locations: {}", dining_courts.len());
-    println!("Items: {}", items.capacity());
+    println!("New Items: {}", new_items);
+    println!("New Locations: {}\n", new_locations);
 
-    exit(0);
+    println!("Item Verification: {}", bank.items.len());
+    println!("Location Verification: {}", bank.locations.len());
+
+    let encoded_bytes = bank.encode_to_vec();
+
+    fs::write("../bank.bin", encoded_bytes).unwrap();
 }
 
 fn build_payload(date: &str) -> serde_json::Value {

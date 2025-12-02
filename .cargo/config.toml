@@ -1,3 +1,4 @@
 [alias]
 server = "run -p server"
 process = "run -p process"
+docs = "doc --no-deps --open"

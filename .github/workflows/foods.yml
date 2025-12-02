@@ -1,0 +1,45 @@
+name: Fetch Foods
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Configure cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Process foods
+        run: cargo process
+
+      - name: Check for changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          cd ..
+          if git diff --quiet -- bank.bin; then
+            echo "No changes in bank.bin"
+            exit 0
+          fi
+
+          echo "Changes detected — committing"
+          git add bank.bin
+          git commit -m "Update bank.bin"
+          git push origin main

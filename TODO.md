@@ -5,8 +5,18 @@
 - [ ] Rust communication with other containers
 - [ ] Basic frontend
 - [ ] Unit tests for config?
+- [ ] Unit tests for process
+- [ ] Cron job for process
+- [ ] Proto file
+- [ ] Monitoring stack
+- [ ] Mount proto files
 
 # Done
+
+## 12/02/25
+
+- [x] Rust workspace for process and server
+- [*] Rust shear CI
 
 ## 12/01/25
 

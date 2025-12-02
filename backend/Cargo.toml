@@ -4,3 +4,6 @@ edition = "2024"
 
 [workspace]
 members = ["server", "process"]
+resolver = "3"
+
+# cargo shear --fix
