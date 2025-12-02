@@ -21,6 +21,11 @@ jobs:
       - name: Configure cache
         uses: Swatinem/rust-cache@v2
 
+      - name: Install protoc for process
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y protobuf-compiler
+
       - name: Compiling, formatting, and testing
         run: |
           cargo fmt --all -- --check
