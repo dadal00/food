@@ -7,16 +7,23 @@ updates:
       interval: "daily"
 
   # Enable version updates for Docker
+  # App: Custom
   - package-ecosystem: "docker"
     directory: "/backend"
     schedule:
       interval: "daily"
+  # App: External
   - package-ecosystem: "docker"
     directory: "/deploy/meilisearch"
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
     directory: "/deploy/redis"
+    schedule:
+      interval: "daily"
+  # Monitoring
+  - package-ecosystem: "docker"
+    directory: "/monitor/grafana"
     schedule:
       interval: "daily"
 
