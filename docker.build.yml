@@ -1,10 +1,12 @@
 services:
+  # App: Custom
   app_rust:
     build:
       context: ./
       dockerfile: ./backend/Dockerfile
     image: app_rust:latest
 
+  # App: External
   dummy_meili:
     build:
       context: ./deploy/meilisearch
@@ -14,3 +16,9 @@ services:
     build:
       context: ./deploy/redis
     image: dummy_redis:latest
+
+  # Monitoring
+  dummy_grafana:
+    build:
+      context: ./monitor/grafana
+    image: dummy_grafana:latest

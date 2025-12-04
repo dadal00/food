@@ -1,0 +1,21 @@
+services:
+  grafana:
+    image: dummy_grafana:latest
+    networks:
+      - monitor_network
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    ports:
+      - "3000:3000"
+
+networks:
+  monitor_network:
+    external: true
+    name: monitor_network
