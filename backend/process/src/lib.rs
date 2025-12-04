@@ -254,3 +254,39 @@ fn sanitize(input: &str) -> String {
     let collapse = Regex::new(r" +").unwrap();
     collapse.replace_all(&s, " ").into_owned()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::sanitize;
+
+    #[test]
+    fn test_basic() {
+        assert_eq!(sanitize("hello_world"), "hello world");
+        assert_eq!(sanitize("Rust-lang"), "Rust-lang");
+        assert_eq!(sanitize("clean-this_text!"), "clean-this text");
+    }
+
+    #[test]
+    fn test_leading_trailing_spaces() {
+        assert_eq!(sanitize("   hello   "), "hello");
+        assert_eq!(sanitize("  multiple   spaces  "), "multiple spaces");
+    }
+
+    #[test]
+    fn test_special_characters() {
+        assert_eq!(sanitize("!@#$%^&*()"), "");
+        assert_eq!(sanitize("abc123!@#"), "abc123");
+    }
+
+    #[test]
+    fn test_underscores_and_dashes() {
+        assert_eq!(sanitize("hello_world-test"), "hello world-test");
+        assert_eq!(sanitize("_start_end_"), "start end");
+    }
+
+    #[test]
+    fn test_empty_string() {
+        assert_eq!(sanitize(""), "");
+        assert_eq!(sanitize("     "), "");
+    }
+}
