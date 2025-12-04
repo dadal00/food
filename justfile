@@ -68,20 +68,20 @@ grab-meili-key:
 [doc]
 build service="all":
 	if [ "{{service}}" == "all" ]; then \
-		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build; \
+		envsubst < docker.build.yml | docker compose -f docker.build.yml build; \
 	elif [ "{{service}}" == "custom" ]; then \
-		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build ${CUSTOM_IMAGES}; \
+		envsubst < docker.build.yml | docker compose -f docker.build.yml build ${CUSTOM_IMAGES}; \
 	else \
-		envsubst < deploy/docker.build.yml | docker compose -f deploy/docker.build.yml build {{service}}; \
+		envsubst < docker.build.yml | docker compose -f docker.build.yml build {{service}}; \
 	fi
 
 deploy mode="default":	
 	just build
 
 	if [ "{{mode}}" == "debug" ]; then \
-		envsubst < deploy/docker.swarm.yml | docker stack deploy -c deploy/docker.swarm.yml app --detach=false; \
+		envsubst < deploy/docker.app.yml | docker stack deploy -c deploy/docker.app.yml app --detach=false; \
 	else \
-	 	envsubst < deploy/docker.swarm.yml | docker stack deploy -c deploy/docker.swarm.yml app --detach=true; \
+	 	envsubst < deploy/docker.app.yml | docker stack deploy -c deploy/docker.app.yml app --detach=true; \
 	fi
 
 kill:

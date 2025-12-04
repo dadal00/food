@@ -1,16 +1,16 @@
 services:
   app_rust:
     build:
-      context: ../
+      context: ./
       dockerfile: ./backend/Dockerfile
     image: app_rust:latest
 
   dummy_meili:
     build:
-      context: ./meilisearch
+      context: ./deploy/meilisearch
     image: dummy_meili:latest
 
   dummy_redis:
     build:
-      context: ./redis
+      context: ./deploy/redis
     image: dummy_redis:latest
