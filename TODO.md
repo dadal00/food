@@ -1,8 +1,5 @@
 # TODO List
 
-- [ ] Unit tests for config?
-- [ ] Unit tests for process
-
 - [ ] Monitoring stack
 
 - [ ] Rust communication with proxy (exposing ports)
@@ -15,6 +12,10 @@
 - [ ] Proxy custom Docker image
 
 # Done
+
+## 12/04/25
+
+- [x] Unit tests for process/sanitize
 
 ## 12/02/25
 

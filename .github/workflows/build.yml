@@ -40,7 +40,7 @@ jobs:
             REMOTE_SHA="$REMOTE:${SHA:0:7}"
 
             RAW_MSG="${{ github.event.head_commit.message }}"
-            SANITIZED_MSG=$(echo "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
+            SANITIZED_MSG=$(printf '%s' "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
             REMOTE_MSG="$REMOTE:${SANITIZED_MSG:-"no-msg"}"
 
             docker tag "$LOCAL" "$REMOTE_LATEST"
