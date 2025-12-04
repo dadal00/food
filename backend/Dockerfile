@@ -1,4 +1,4 @@
-FROM rust:1.91.1-alpine3.21@sha256:33398e1909eae993d43395f85cb102294222bc4ead52a701f72887cb556ff40a
+FROM rust:1.91.1-alpine3.21@sha256:32817dd3ce1cd4ed459dcc289df1b906dc53719975156636e605063821668b1e
 
 ENV RUSTFLAGS="-C target-feature=-crt-static"
 
@@ -13,7 +13,7 @@ WORKDIR /app/backend
 RUN cargo build --release -p server
 RUN strip target/release/server
 
-FROM alpine:3.22@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412
+FROM alpine:3.23@sha256:51183f2cfa6320055da30872f211093f9ff1d3cf06f39a0bdb212314c5dc7375
 
 RUN apk add --no-cache libgcc
 
