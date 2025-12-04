@@ -79,6 +79,7 @@ use std::{collections::HashSet, fs};
 
 use chrono::prelude::*;
 use prost::Message;
+use regex::Regex;
 use reqwest::Client;
 use serde::Deserialize;
 use serde_json::json;
@@ -161,6 +162,9 @@ pub async fn fetch_foods() {
     let data = fs::read("../bank.bin").unwrap();
     let mut bank: Bank = Bank::decode(&*data).unwrap();
 
+    sanitize_vec(&mut bank.items);
+    sanitize_vec(&mut bank.locations);
+
     let mut seen: HashSet<String> = HashSet::from_iter(bank.items.clone());
     seen.extend(bank.locations.clone());
 
@@ -179,11 +183,13 @@ pub async fn fetch_foods() {
     let mut new_locations = 0;
     let mut new_items = 0;
     for court in json.data.dining_courts {
-        if !seen.contains(&court.formal_name) {
-            println!("New location! {}", court.formal_name);
+        let mut sanitized = sanitize(&court.formal_name);
 
-            bank.locations.push(court.formal_name.clone());
-            seen.insert(court.formal_name);
+        if !sanitized.is_empty() && !seen.contains(&sanitized) {
+            println!("New location! {}", sanitized);
+
+            bank.locations.push(sanitized.clone());
+            seen.insert(sanitized);
 
             new_locations += 1;
         }
@@ -191,11 +197,13 @@ pub async fn fetch_foods() {
         for meal in court.daily_menu.meals {
             for station in meal.stations {
                 for item_shell in station.items {
-                    if !seen.contains(&item_shell.item.name) {
-                        println!("New item! {}", item_shell.item.name);
+                    sanitized = sanitize(&item_shell.item.name);
 
-                        bank.items.push(item_shell.item.name.clone());
-                        seen.insert(item_shell.item.name);
+                    if !sanitized.is_empty() && !seen.contains(&sanitized) {
+                        println!("New item! {}", sanitized);
+
+                        bank.items.push(sanitized.clone());
+                        seen.insert(sanitized);
 
                         new_items += 1;
                     }
@@ -226,4 +234,23 @@ fn build_payload(date: &str) -> serde_json::Value {
 fn today_formatted() -> String {
     let today = Local::now().date_naive();
     today.format("%Y-%m-%d").to_string()
+}
+
+fn sanitize_vec(vector: &mut Vec<String>) {
+    vector.iter_mut().for_each(|item| {
+        *item = sanitize(item);
+    });
+}
+
+fn sanitize(input: &str) -> String {
+    let replace = Regex::new(r"[_]").unwrap();
+    let mut s = replace.replace_all(input, " ").into_owned();
+
+    let clean_re = Regex::new(r"[^A-Za-z0-9- ]").unwrap();
+    s = clean_re.replace_all(&s, "").into_owned();
+
+    s = s.trim().to_string();
+
+    let collapse = Regex::new(r" +").unwrap();
+    collapse.replace_all(&s, " ").into_owned()
 }
