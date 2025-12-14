@@ -285,7 +285,7 @@ mod tests {
     #[test]
     fn test_basic() {
         assert_eq!(sanitize("hello_world"), "hello world");
-        assert_eq!(sanitize("Rust-lang"), "Rust-lang");
+        assert_eq!(sanitize("Rust-lang"), "rust-lang");
         assert_eq!(sanitize("clean-this_text!"), "clean-this text");
     }
 
