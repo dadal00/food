@@ -165,6 +165,8 @@ pub async fn fetch_foods() {
     sanitize_vec(&mut bank.items);
     sanitize_vec(&mut bank.locations);
 
+    clean_bank(&mut bank);
+
     let mut seen: HashSet<String> = HashSet::from_iter(bank.items.clone());
     seen.extend(bank.locations.clone());
 
@@ -218,9 +220,30 @@ pub async fn fetch_foods() {
     println!("Item Verification: {}", bank.items.len());
     println!("Location Verification: {}", bank.locations.len());
 
+    bank.items.sort();
+    bank.locations.sort();
+
     let encoded_bytes = bank.encode_to_vec();
 
     fs::write("../bank.bin", encoded_bytes).unwrap();
+}
+
+fn clean_bank(bank: &mut Bank) {
+    bank.items = bank
+        .items
+        .iter()
+        .cloned()
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect();
+
+    bank.locations = bank
+        .locations
+        .iter()
+        .cloned()
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect();
 }
 
 fn build_payload(date: &str) -> serde_json::Value {
@@ -252,7 +275,7 @@ fn sanitize(input: &str) -> String {
     s = s.trim().to_string();
 
     let collapse = Regex::new(r" +").unwrap();
-    collapse.replace_all(&s, " ").into_owned()
+    collapse.replace_all(&s, " ").into_owned().to_lowercase()
 }
 
 #[cfg(test)]
