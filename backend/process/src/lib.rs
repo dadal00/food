@@ -220,9 +220,6 @@ pub async fn fetch_foods() {
     println!("Item Verification: {}", bank.items.len());
     println!("Location Verification: {}", bank.locations.len());
 
-    bank.items.sort();
-    bank.locations.sort();
-
     let encoded_bytes = bank.encode_to_vec();
 
     fs::write("../bank.bin", encoded_bytes).unwrap();

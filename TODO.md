@@ -12,7 +12,7 @@
 
 ## 12/16/25
 
-- [x] Rpxy sfor jwt cookie + moka lookup
+- [x] Rpxy JWT cookie + Moka lookup
 - [x] Rpxy handling slow and fast paths
 
 ## 12/04/25

@@ -1,4 +1,3 @@
-# Both or either one of http/https ports must be specified
 listen_port = 8080
 
 [apps]
