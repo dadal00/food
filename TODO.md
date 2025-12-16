@@ -8,13 +8,12 @@
 - [ ] Mount proto files
 - [ ] Future Docker protoc installation
 
-- [ ] Verify Rpxy functionality
-
 # Done
 
 ## 12/16/25
 
-- [x] Rpxy skeleton compiles for jwt cookie + moka lookup
+- [x] Rpxy sfor jwt cookie + moka lookup
+- [x] Rpxy handling slow and fast paths
 
 ## 12/04/25
 

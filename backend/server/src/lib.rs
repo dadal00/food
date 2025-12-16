@@ -188,6 +188,7 @@ pub async fn start_server() {
 
     let app = Router::new()
         .route("/hello", get(hello_handler))
+        .route("/search", get(search_handler))
         .layer(cors)
         .with_state(state.clone());
 
@@ -237,7 +238,10 @@ struct Token {
     token: String,
 }
 
-#[axum::debug_handler]
 async fn hello_handler(Json(payload): Json<Token>) -> impl IntoResponse {
+    (StatusCode::OK, payload.token).into_response()
+}
+
+async fn search_handler(Json(payload): Json<Token>) -> impl IntoResponse {
     (StatusCode::OK, payload.token).into_response()
 }
