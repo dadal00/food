@@ -7,27 +7,27 @@ server_name = 'localhost'
 
 [[apps.localhost.reverse_proxy]]
 path = '/hello'
-upstream = [
-  { location = 'localhost:1111' },
-]
-upstream_options = [
-  "keep_original_host",   # [default] do not overwrite HOST value with upstream hostname (like 192.168.xx.x seen from rpxy), which is prior to "set_upstream_host" if both are specified.
-]
+upstream = [{ location = 'localhost:1111' }]
+upstream_options = ["keep_original_host"]
 
 [experimental]
 ignore_sni_consistency = false
 connection_handling_timeout = 0
 
 [experimental.h3]
-alt_svc_max_age = 3600           
+alt_svc_max_age = 3600
 request_max_body_size = 65536
 max_concurrent_connections = 10000
 max_concurrent_bidistream = 100
 max_concurrent_unistream = 100
-max_idle_timeout = 10 
+max_idle_timeout = 10
 
 [experimental.cache]
-cache_dir = './cache'             
-max_cache_entry = 1000             
-max_cache_each_size = 65535        
+cache_dir = './cache'
+max_cache_entry = 1000
+max_cache_each_size = 65535
 max_cache_each_size_on_memory = 4096
+
+[experimental.custom]
+rate_limit_ms = 200 # How long before another request from user
+max_entries = 10000 # Max number of cached entries any given rate limit interval
