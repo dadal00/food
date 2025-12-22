@@ -75,7 +75,10 @@
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
 
-use std::{collections::HashSet, fs};
+use std::{
+    collections::{HashMap, HashSet},
+    fs,
+};
 
 use chrono::prelude::*;
 use prost::Message;
@@ -87,8 +90,7 @@ use serde_json::json;
 pub mod foods {
     include!(concat!(env!("OUT_DIR"), "/foods.rs"));
 }
-
-use foods::Bank;
+use foods::{Bank, Item as ProtoItem};
 
 const ENDPOINT: &str = "https://api.hfs.purdue.edu/menus/v3/GraphQL";
 
@@ -162,15 +164,16 @@ pub async fn fetch_foods() {
     let data = fs::read("../bank.bin").unwrap();
     let mut bank: Bank = Bank::decode(&*data).unwrap();
 
-    sanitize_vec(&mut bank.items);
-    sanitize_vec(&mut bank.locations);
+    sanitize_bank(&mut bank);
 
-    clean_bank(&mut bank);
+    let mut seen: HashSet<String> = bank
+        .foods
+        .iter()
+        .chain(bank.locations.iter())
+        .map(|item| item.name.clone())
+        .collect();
 
-    let mut seen: HashSet<String> = HashSet::from_iter(bank.items.clone());
-    seen.extend(bank.locations.clone());
-
-    println!("Loaded Items: {}", bank.items.len());
+    println!("Loaded Foods: {}", bank.foods.len());
     println!("Loaded Locations: {}\n", bank.locations.len());
 
     let client = Client::new();
@@ -190,9 +193,13 @@ pub async fn fetch_foods() {
         if !sanitized.is_empty() && !seen.contains(&sanitized) {
             println!("New location! {}", sanitized);
 
-            bank.locations.push(sanitized.clone());
+            bank.locations.push(ProtoItem {
+                id: bank.next_location_id,
+                name: sanitized.clone(),
+            });
             seen.insert(sanitized);
 
+            bank.next_location_id += 1;
             new_locations += 1;
         }
 
@@ -204,9 +211,13 @@ pub async fn fetch_foods() {
                     if !sanitized.is_empty() && !seen.contains(&sanitized) {
                         println!("New item! {}", sanitized);
 
-                        bank.items.push(sanitized.clone());
+                        bank.foods.push(ProtoItem {
+                            id: bank.next_food_id,
+                            name: sanitized.clone(),
+                        });
                         seen.insert(sanitized);
 
+                        bank.next_food_id += 1;
                         new_items += 1;
                     }
                 }
@@ -217,30 +228,41 @@ pub async fn fetch_foods() {
     println!("New Items: {}", new_items);
     println!("New Locations: {}\n", new_locations);
 
-    println!("Item Verification: {}", bank.items.len());
+    println!("Item Verification: {}", bank.foods.len());
     println!("Location Verification: {}", bank.locations.len());
 
+    sanitize_bank(&mut bank);
     let encoded_bytes = bank.encode_to_vec();
 
     fs::write("../bank.bin", encoded_bytes).unwrap();
 }
 
-fn clean_bank(bank: &mut Bank) {
-    bank.items = bank
-        .items
-        .iter()
-        .cloned()
-        .collect::<HashSet<_>>()
-        .into_iter()
-        .collect();
+fn sanitize_bank(bank: &mut Bank) {
+    sanitize_vec(&mut bank.foods);
+    sanitize_vec(&mut bank.locations);
 
-    bank.locations = bank
-        .locations
-        .iter()
-        .cloned()
-        .collect::<HashSet<_>>()
-        .into_iter()
-        .collect();
+    unique_bank(bank);
+
+    bank.foods.sort_by(|a, b| a.name.cmp(&b.name));
+    bank.locations.sort_by(|a, b| a.name.cmp(&b.name));
+}
+
+fn unique_bank(bank: &mut Bank) {
+    bank.foods = {
+        let mut map = HashMap::new();
+        for item in bank.foods.drain(..) {
+            map.entry(item.name.clone()).or_insert(item);
+        }
+        map.into_values().collect()
+    };
+
+    bank.locations = {
+        let mut map = HashMap::new();
+        for loc in bank.locations.drain(..) {
+            map.entry(loc.name.clone()).or_insert(loc);
+        }
+        map.into_values().collect()
+    };
 }
 
 fn build_payload(date: &str) -> serde_json::Value {
@@ -256,9 +278,9 @@ fn today_formatted() -> String {
     today.format("%Y-%m-%d").to_string()
 }
 
-fn sanitize_vec(vector: &mut Vec<String>) {
+fn sanitize_vec(vector: &mut Vec<ProtoItem>) {
     vector.iter_mut().for_each(|item| {
-        *item = sanitize(item);
+        item.name = sanitize(&item.name);
     });
 }
 
