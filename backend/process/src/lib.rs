@@ -225,6 +225,11 @@ pub async fn fetch_foods() {
         }
     }
 
+    if new_items == 0 && new_locations == 0 {
+        println!("No new items or locations found. Exiting.");
+        return;
+    }
+
     println!("New Items: {}", new_items);
     println!("New Locations: {}\n", new_locations);
 
