@@ -51,10 +51,61 @@
 //! ```sh
 //! curl -H "Authorization: Bearer $(cat /run/secrets/MEILI_MASTER_KEY)" http://localhost:7700/keys
 //! ```
-use std::sync::Arc;
+use std::{collections::HashMap, sync::Arc};
 
-use meilisearch_sdk::client::Client;
+use meilisearch_sdk::{
+    client::Client,
+    settings::{MinWordSizeForTypos, Settings, TypoToleranceSettings},
+};
+use serde::Serialize;
 
-pub async fn init_meilisearch(meili_url: &str, meili_admin_key: &str) -> Arc<Client> {
-    Arc::new(Client::new(meili_url, Some(meili_admin_key)).unwrap())
+pub const ITEM_NAME: &str = "name";
+
+#[derive(Serialize)]
+pub struct Item {
+    pub name: String,
+}
+
+pub const FOOD_VOTES: &str = "votes";
+
+#[derive(Serialize)]
+pub struct Food {
+    #[serde(flatten)] // mock inheritance
+    pub item: Item,
+    pub votes: u32,
+    pub location: String,
+}
+
+pub async fn init_meilisearch(
+    meili_url: &str,
+    meili_admin_key: &str,
+    food_votes: HashMap<String, String>,
+) -> Arc<Client> {
+    let meili_client = Arc::new(Client::new(meili_url, Some(meili_admin_key)).unwrap());
+
+    meili_client
+}
+
+fn init_settings() -> Settings {
+    Settings::new()
+        .with_ranking_rules([
+            "words",
+            "typo",
+            "proximity",
+            "exactness",
+            "attribute",
+            "sort",
+        ])
+        .with_distinct_attribute(Some(ITEM_NAME))
+        .with_searchable_attributes([ITEM_NAME])
+        // .with_filterable_attributes([])
+        .with_typo_tolerance(TypoToleranceSettings {
+            enabled: Some(true),
+            disable_on_attributes: None,
+            disable_on_words: None,
+            min_word_size_for_typos: Some(MinWordSizeForTypos {
+                one_typo: Some(5),
+                two_typos: Some(9),
+            }),
+        })
 }

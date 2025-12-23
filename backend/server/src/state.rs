@@ -19,10 +19,8 @@ impl State {
 
         let config = Config::load();
 
-        let redis_future = init_redis(&config.redis_url, &bank);
-        let meili_future = init_meilisearch(&config.meili_url, &config.meili_key);
-
-        let (redis_connection, meili_client) = tokio::join!(redis_future, meili_future);
+        let (redis_connection, food_votes) = init_redis(&config.redis_url, &bank).await;
+        let meili_client = init_meilisearch(&config.meili_url, &config.meili_key, food_votes).await;
 
         Arc::new(Self {
             bank,
