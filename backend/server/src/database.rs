@@ -20,23 +20,41 @@
 //! - Atomic operations, Redis loads operations into a queue
 //! - Estimated memory usage:
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
-use std::time::Duration;
+use std::{collections::HashMap, time::Duration};
 
+use bank::foods::Bank;
 use redis::{
     Client,
     aio::{ConnectionManager, ConnectionManagerConfig},
 };
 
-pub async fn init_redis(redis_url: &str) -> ConnectionManager {
+const FOODS_HASH: &str = "foods";
+const LOCATIONS_HASH: &str = "locations";
+
+pub async fn init_redis(redis_url: &str, bank: &Bank) -> ConnectionManager {
     let config = ConnectionManagerConfig::new()
         .set_number_of_retries(1)
         .set_connection_timeout(Some(Duration::from_millis(100)));
 
     let client = Client::open(redis_url).unwrap();
-    let connection_manager = client
+    let mut connection_manager = client
         .get_connection_manager_with_config(config)
         .await
         .unwrap();
 
+    let food_pairs = map_keys_to_zero_vec(&bank.foods);
+    let location_pairs = map_keys_to_zero_vec(&bank.locations);
+
+    let mut pipe = redis::pipe();
+    pipe.atomic()
+        .hset_multiple(FOODS_HASH, &food_pairs)
+        .hset_multiple(LOCATIONS_HASH, &location_pairs);
+
+    let _: () = pipe.query_async(&mut connection_manager).await.unwrap();
+
     connection_manager
+}
+
+fn map_keys_to_zero_vec<T>(map: &HashMap<String, T>) -> Vec<(&str, String)> {
+    map.keys().map(|k| (k.as_str(), "0".to_string())).collect()
 }

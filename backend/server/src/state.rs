@@ -1,12 +1,13 @@
 use std::sync::Arc;
 
-use bank::get_bank_remote;
+use bank::{foods::Bank, get_bank_remote};
 use meilisearch_sdk::client::Client;
 use redis::aio::ConnectionManager;
 
 use super::{config::Config, database::init_redis, search::init_meilisearch};
 
 pub struct State {
+    pub bank: Bank,
     pub config: Config,
     pub redis_connection: ConnectionManager,
     pub meili_client: Arc<Client>,
@@ -18,12 +19,13 @@ impl State {
 
         let config = Config::load();
 
-        let redis_future = init_redis(&config.redis_url);
+        let redis_future = init_redis(&config.redis_url, &bank);
         let meili_future = init_meilisearch(&config.meili_url, &config.meili_key);
 
         let (redis_connection, meili_client) = tokio::join!(redis_future, meili_future);
 
         Arc::new(Self {
+            bank,
             config,
             redis_connection,
             meili_client,
