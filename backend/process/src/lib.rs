@@ -74,91 +74,20 @@
 //!
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
+use std::{collections::HashSet, fs};
 
-use std::{
-    collections::{HashMap, HashSet},
-    fs,
-};
-
-use chrono::prelude::*;
 use prost::Message;
-use regex::Regex;
 use reqwest::Client;
-use serde::Deserialize;
-use serde_json::json;
 
 pub mod foods {
     include!(concat!(env!("OUT_DIR"), "/foods.rs"));
 }
+pub mod models;
+pub mod utils;
+
 use foods::{Bank, Item as ProtoItem};
-
-const ENDPOINT: &str = "https://api.hfs.purdue.edu/menus/v3/GraphQL";
-
-const QUERY: &str = r#"
-    query getFoodNames($date: Date!) {
-        diningCourts {
-            formalName
-            dailyMenu(date: $date) {
-                meals {
-                    name
-                    stations {
-                        name
-                        items {
-                            item {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-"#;
-
-#[derive(Deserialize)]
-struct Response {
-    data: Data,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Data {
-    dining_courts: Vec<DiningCourt>,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct DiningCourt {
-    formal_name: String,
-    daily_menu: DailyMenu,
-}
-
-#[derive(Deserialize)]
-struct DailyMenu {
-    meals: Vec<Meal>,
-}
-
-#[derive(Deserialize)]
-struct Meal {
-    name: String,
-    stations: Vec<Station>,
-}
-
-#[derive(Deserialize)]
-struct Station {
-    name: String,
-    items: Vec<ItemShell>,
-}
-
-#[derive(Deserialize)]
-struct ItemShell {
-    item: Item,
-}
-
-#[derive(Deserialize)]
-struct Item {
-    name: String,
-}
+use models::{ENDPOINT, Response};
+use utils::{build_payload, sanitize, sanitize_bank, today_formatted};
 
 pub async fn fetch_foods() {
     let data = fs::read("../bank.bin").unwrap();
@@ -240,100 +169,4 @@ pub async fn fetch_foods() {
     let encoded_bytes = bank.encode_to_vec();
 
     fs::write("../bank.bin", encoded_bytes).unwrap();
-}
-
-fn sanitize_bank(bank: &mut Bank) {
-    sanitize_vec(&mut bank.foods);
-    sanitize_vec(&mut bank.locations);
-
-    unique_bank(bank);
-
-    bank.foods.sort_by(|a, b| a.name.cmp(&b.name));
-    bank.locations.sort_by(|a, b| a.name.cmp(&b.name));
-}
-
-fn unique_bank(bank: &mut Bank) {
-    bank.foods = {
-        let mut map = HashMap::new();
-        for item in bank.foods.drain(..) {
-            map.entry(item.name.clone()).or_insert(item);
-        }
-        map.into_values().collect()
-    };
-
-    bank.locations = {
-        let mut map = HashMap::new();
-        for loc in bank.locations.drain(..) {
-            map.entry(loc.name.clone()).or_insert(loc);
-        }
-        map.into_values().collect()
-    };
-}
-
-fn build_payload(date: &str) -> serde_json::Value {
-    json!({
-        "operationName": "getLocationMenu",
-        "variables": { "date": date },
-        "query": QUERY
-    })
-}
-
-fn today_formatted() -> String {
-    let today = Local::now().date_naive();
-    today.format("%Y-%m-%d").to_string()
-}
-
-fn sanitize_vec(vector: &mut Vec<ProtoItem>) {
-    vector.iter_mut().for_each(|item| {
-        item.name = sanitize(&item.name);
-    });
-}
-
-fn sanitize(input: &str) -> String {
-    let replace = Regex::new(r"[_]").unwrap();
-    let mut s = replace.replace_all(input, " ").into_owned();
-
-    let clean_re = Regex::new(r"[^A-Za-z0-9- ]").unwrap();
-    s = clean_re.replace_all(&s, "").into_owned();
-
-    s = s.trim().to_string();
-
-    let collapse = Regex::new(r" +").unwrap();
-    collapse.replace_all(&s, " ").into_owned().to_lowercase()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::sanitize;
-
-    #[test]
-    fn test_basic() {
-        assert_eq!(sanitize("hello_world"), "hello world");
-        assert_eq!(sanitize("Rust-lang"), "rust-lang");
-        assert_eq!(sanitize("clean-this_text!"), "clean-this text");
-    }
-
-    #[test]
-    fn test_leading_trailing_spaces() {
-        assert_eq!(sanitize("   hello   "), "hello");
-        assert_eq!(sanitize("  multiple   spaces  "), "multiple spaces");
-    }
-
-    #[test]
-    fn test_special_characters() {
-        assert_eq!(sanitize("!@#$%^&*()"), "");
-        assert_eq!(sanitize("abc123!@#"), "abc123");
-    }
-
-    #[test]
-    fn test_underscores_and_dashes() {
-        assert_eq!(sanitize("hello_world-test"), "hello world-test");
-        assert_eq!(sanitize("_start_end_"), "start end");
-    }
-
-    #[test]
-    fn test_empty_string() {
-        assert_eq!(sanitize(""), "");
-        assert_eq!(sanitize("     "), "");
-    }
 }
