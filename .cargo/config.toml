@@ -1,4 +1,5 @@
 [alias]
 server = "run -p server"
+serverl = "run -p server --features local"
 process = "run -p process"
 docs = "doc --no-deps --open"

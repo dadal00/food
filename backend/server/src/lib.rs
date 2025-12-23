@@ -134,16 +134,13 @@
 //! ```sh
 //! just erase
 //! ```
-
 use std::{sync::Arc, time::Duration};
 
 use axum::{
-    Json, Router,
-    http::{Method, StatusCode, header::CONTENT_TYPE},
-    response::IntoResponse,
+    Router,
+    http::{Method, header::CONTENT_TYPE},
     routing::get,
 };
-use serde::Deserialize;
 use signal::{
     ctrl_c,
     unix::{SignalKind, signal},
@@ -153,12 +150,14 @@ use tower_http::cors::CorsLayer;
 use tracing::info;
 use tracing_subscriber::{EnvFilter, fmt};
 
-use crate::config::Config;
-
 pub mod config;
 pub mod database;
+pub mod routes;
 pub mod search;
 pub mod user;
+
+use config::Config;
+use routes::{hello_handler, search_handler};
 
 pub struct State {
     pub config: Config,
@@ -231,17 +230,4 @@ async fn shutdown_signal() {
         _ = ctrl_c => {},
         _ = terminate => {},
     }
-}
-
-#[derive(Deserialize)]
-struct Token {
-    token: String,
-}
-
-async fn hello_handler(Json(payload): Json<Token>) -> impl IntoResponse {
-    (StatusCode::OK, payload.token).into_response()
-}
-
-async fn search_handler(Json(payload): Json<Token>) -> impl IntoResponse {
-    (StatusCode::OK, payload.token).into_response()
 }

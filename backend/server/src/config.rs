@@ -1,9 +1,13 @@
-use std::{env, fmt::Display, fs::read_to_string, str::FromStr};
+use std::{env, fmt::Display, str::FromStr};
+
+#[cfg(not(feature = "local"))]
+use std::fs::read_to_string;
 
 use tracing::{info, warn};
 
 pub struct Config {
     pub port: u16,
+    #[cfg(not(feature = "local"))]
     pub meili_key: String,
 }
 
@@ -11,6 +15,7 @@ impl Config {
     pub fn load() -> Self {
         Self {
             port: try_load("RUST_PORT", "1111"),
+            #[cfg(not(feature = "local"))]
             meili_key: read_secret("MEILI_ADMIN_KEY"),
         }
     }
@@ -38,6 +43,7 @@ where
         .expect("Environment misconfigured!")
 }
 
+#[cfg(not(feature = "local"))]
 fn read_secret(secret_name: &str) -> String {
     let path = format!("/run/secrets/{secret_name}");
 
