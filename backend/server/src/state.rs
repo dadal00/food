@@ -1,5 +1,6 @@
 use std::sync::Arc;
 
+use bank::get_bank_remote;
 use meilisearch_sdk::client::Client;
 use redis::aio::ConnectionManager;
 
@@ -13,6 +14,8 @@ pub struct State {
 
 impl State {
     pub async fn new() -> Arc<Self> {
+        let bank = get_bank_remote().await;
+
         let config = Config::load();
 
         let redis_future = init_redis(&config.redis_url);

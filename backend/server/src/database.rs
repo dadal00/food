@@ -28,14 +28,15 @@ use redis::{
 };
 
 pub async fn init_redis(redis_url: &str) -> ConnectionManager {
-    let client = Client::open(redis_url).unwrap();
-
     let config = ConnectionManagerConfig::new()
         .set_number_of_retries(1)
         .set_connection_timeout(Some(Duration::from_millis(100)));
 
-    client
+    let client = Client::open(redis_url).unwrap();
+    let connection_manager = client
         .get_connection_manager_with_config(config)
         .await
-        .unwrap()
+        .unwrap();
+
+    connection_manager
 }
