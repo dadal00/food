@@ -4,6 +4,7 @@
 
 - [ ] Rust communication with proxy (exposing ports)
 - [ ] Rust communication with other containers
+- [ ] Rust endpoints
 - [ ] Basic frontend
 - [ ] Mount proto files
 - [ ] Future Docker protoc installation

@@ -30,5 +30,5 @@ max_cache_each_size_on_memory = 4096
 # How long before another request from user for
 fast_rate_limit_ms = 200          # FAST endpoints such as search
 fast_paths = ["localhost/search"]
-slow_rate_limit_ms = 2000         # or SLOW endpoints
+slow_rate_limit_ms = 2000         # and all other endpoints
 max_entries = 10000               # Max number of cached entries any given rate limit interval
