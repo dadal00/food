@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use bank::foods::{Bank, Item as ProtoItem};
+use bank::foods::Bank;
 use chrono::prelude::*;
 use regex::Regex;
 use serde_json::json;
@@ -8,31 +8,8 @@ use serde_json::json;
 use crate::models::QUERY;
 
 pub fn sanitize_bank(bank: &mut Bank) {
-    sanitize_vec(&mut bank.foods);
-    sanitize_vec(&mut bank.locations);
-
-    unique_bank(bank);
-
-    bank.foods.sort_by(|a, b| a.name.cmp(&b.name));
-    bank.locations.sort_by(|a, b| a.name.cmp(&b.name));
-}
-
-pub fn unique_bank(bank: &mut Bank) {
-    bank.foods = {
-        let mut map = HashMap::new();
-        for item in bank.foods.drain(..) {
-            map.entry(item.name.clone()).or_insert(item);
-        }
-        map.into_values().collect()
-    };
-
-    bank.locations = {
-        let mut map = HashMap::new();
-        for loc in bank.locations.drain(..) {
-            map.entry(loc.name.clone()).or_insert(loc);
-        }
-        map.into_values().collect()
-    };
+    sanitize_keys(&mut bank.foods);
+    sanitize_keys(&mut bank.locations);
 }
 
 pub fn build_payload(date: &str) -> serde_json::Value {
@@ -48,10 +25,10 @@ pub fn today_formatted() -> String {
     today.format("%Y-%m-%d").to_string()
 }
 
-pub fn sanitize_vec(vector: &mut Vec<ProtoItem>) {
-    vector.iter_mut().for_each(|item| {
-        item.name = sanitize(&item.name);
-    });
+pub fn sanitize_keys<V>(map: &mut HashMap<String, V>) {
+    let new_map: HashMap<String, V> = map.drain().map(|(k, v)| (sanitize(&k), v)).collect();
+
+    *map = new_map;
 }
 
 pub fn sanitize(input: &str) -> String {

@@ -74,79 +74,23 @@
 //!
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
-use std::collections::HashSet;
-
 use reqwest::Client;
 
 pub mod models;
 pub mod utils;
 
-use bank::{foods::Item as ProtoItem, get_bank, write_bank};
+use bank::{foods::Bank, get_bank, write_bank};
 use models::{ENDPOINT, Response};
 use utils::{build_payload, sanitize, sanitize_bank, today_formatted};
 
-pub async fn fetch_foods() {
+pub async fn load_foods() {
     let mut bank = get_bank();
     sanitize_bank(&mut bank);
-
-    let mut seen: HashSet<String> = bank
-        .foods
-        .iter()
-        .chain(bank.locations.iter())
-        .map(|item| item.name.clone())
-        .collect();
 
     println!("Loaded Foods: {}", bank.foods.len());
     println!("Loaded Locations: {}\n", bank.locations.len());
 
-    let client = Client::new();
-    let payload = build_payload(&today_formatted());
-    let res = client.post(ENDPOINT).json(&payload).send().await.unwrap();
-
-    println!("Status: {}\n", res.status());
-
-    let json_string = res.text().await.unwrap();
-    let json: Response = serde_json::from_str(&json_string).unwrap();
-
-    let mut new_locations = 0;
-    let mut new_items = 0;
-    for court in json.data.dining_courts {
-        let mut sanitized = sanitize(&court.formal_name);
-
-        if !sanitized.is_empty() && !seen.contains(&sanitized) {
-            println!("New location! {}", sanitized);
-
-            bank.locations.push(ProtoItem {
-                id: bank.next_location_id,
-                name: sanitized.clone(),
-            });
-            seen.insert(sanitized);
-
-            bank.next_location_id += 1;
-            new_locations += 1;
-        }
-
-        for meal in court.daily_menu.meals {
-            for station in meal.stations {
-                for item_shell in station.items {
-                    sanitized = sanitize(&item_shell.item.name);
-
-                    if !sanitized.is_empty() && !seen.contains(&sanitized) {
-                        println!("New item! {}", sanitized);
-
-                        bank.foods.push(ProtoItem {
-                            id: bank.next_food_id,
-                            name: sanitized.clone(),
-                        });
-                        seen.insert(sanitized);
-
-                        bank.next_food_id += 1;
-                        new_items += 1;
-                    }
-                }
-            }
-        }
-    }
+    let (new_items, new_locations) = fetch_foods(&mut bank).await;
 
     if new_items == 0 && new_locations == 0 {
         println!("No new items or locations found. Exiting.");
@@ -161,4 +105,49 @@ pub async fn fetch_foods() {
 
     sanitize_bank(&mut bank);
     write_bank(&bank);
+}
+
+async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
+    let client = Client::new();
+    let payload = build_payload(&today_formatted());
+    let res = client.post(ENDPOINT).json(&payload).send().await.unwrap();
+
+    println!("Status: {}\n", res.status());
+
+    let json_string = res.text().await.unwrap();
+    let json: Response = serde_json::from_str(&json_string).unwrap();
+
+    let mut new_locations = 0;
+    let mut new_items = 0;
+    for court in json.data.dining_courts {
+        let mut sanitized = sanitize(&court.formal_name);
+
+        if !sanitized.is_empty() && !bank.locations.contains_key(&sanitized) {
+            println!("New location! {}", sanitized);
+
+            bank.locations.insert(sanitized, bank.next_location_id);
+
+            bank.next_location_id += 1;
+            new_locations += 1;
+        }
+
+        for meal in court.daily_menu.meals {
+            for station in meal.stations {
+                for item_shell in station.items {
+                    sanitized = sanitize(&item_shell.item.name);
+
+                    if !sanitized.is_empty() && !bank.foods.contains_key(&sanitized) {
+                        println!("New item! {}", sanitized);
+
+                        bank.foods.insert(sanitized, bank.next_food_id);
+
+                        bank.next_food_id += 1;
+                        new_items += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    (new_items, new_locations)
 }
