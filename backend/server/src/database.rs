@@ -23,13 +23,29 @@
 use std::{collections::HashMap, time::Duration};
 
 use bank::foods::Bank;
+use once_cell::sync::Lazy;
 use redis::{
-    Client,
+    Client, Script,
     aio::{ConnectionManager, ConnectionManagerConfig},
 };
 
 const FOODS_HASH: &str = "foods";
-const LOCATIONS_HASH: &str = "locations";
+
+static FOODS_INIT_SCRIPT: Lazy<Script> = Lazy::new(|| {
+    Script::new(
+        r#"
+        local key = KEYS[1]
+
+        for i = 1, #ARGV, 2 do
+            local field = ARGV[i]
+            local value = ARGV[i + 1]
+            if redis.call("HEXISTS", key, field) == 0 then
+                redis.call("HSET", key, field, value)
+            end
+        end
+    "#,
+    )
+});
 
 pub async fn init_redis(redis_url: &str, bank: &Bank) -> ConnectionManager {
     let config = ConnectionManagerConfig::new()
@@ -42,15 +58,13 @@ pub async fn init_redis(redis_url: &str, bank: &Bank) -> ConnectionManager {
         .await
         .unwrap();
 
-    let food_pairs = map_keys_to_zero_vec(&bank.foods);
-    let location_pairs = map_keys_to_zero_vec(&bank.locations);
-
-    let mut pipe = redis::pipe();
-    pipe.atomic()
-        .hset_multiple(FOODS_HASH, &food_pairs)
-        .hset_multiple(LOCATIONS_HASH, &location_pairs);
-
-    let _: () = pipe.query_async(&mut connection_manager).await.unwrap();
+    // using a script instead of hset_multiple to avoid overwriting existing values
+    let _: () = FOODS_INIT_SCRIPT
+        .key(FOODS_HASH)
+        .arg(map_keys_to_zero_vec(&bank.foods))
+        .invoke_async(&mut connection_manager)
+        .await
+        .unwrap();
 
     connection_manager
 }
