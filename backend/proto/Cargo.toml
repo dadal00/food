@@ -1,0 +1,13 @@
+[package]
+name = "proto"
+version.workspace = true
+edition.workspace = true
+
+[package.metadata.cargo-shear]
+ignored = ["prost"]
+
+[dependencies]
+prost = "0.14.1"
+
+[build-dependencies]
+prost-build = "0.14.1"

@@ -79,14 +79,11 @@ use std::{collections::HashSet, fs};
 use prost::Message;
 use reqwest::Client;
 
-pub mod foods {
-    include!(concat!(env!("OUT_DIR"), "/foods.rs"));
-}
 pub mod models;
 pub mod utils;
 
-use foods::{Bank, Item as ProtoItem};
 use models::{ENDPOINT, Response};
+use proto::foods::{Bank, Item as ProtoItem};
 use utils::{build_payload, sanitize, sanitize_bank, today_formatted};
 
 pub async fn fetch_foods() {

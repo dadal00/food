@@ -1,13 +1,11 @@
 use std::collections::HashMap;
 
 use chrono::prelude::*;
+use proto::foods::{Bank, Item as ProtoItem};
 use regex::Regex;
 use serde_json::json;
 
-use crate::{
-    foods::{Bank, Item as ProtoItem},
-    models::QUERY,
-};
+use crate::models::QUERY;
 
 pub fn sanitize_bank(bank: &mut Bank) {
     sanitize_vec(&mut bank.foods);
