@@ -74,22 +74,19 @@
 //!
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
-use std::{collections::HashSet, fs};
+use std::collections::HashSet;
 
-use prost::Message;
 use reqwest::Client;
 
 pub mod models;
 pub mod utils;
 
+use bank::{foods::Item as ProtoItem, get_bank, write_bank};
 use models::{ENDPOINT, Response};
-use proto::foods::{Bank, Item as ProtoItem};
 use utils::{build_payload, sanitize, sanitize_bank, today_formatted};
 
 pub async fn fetch_foods() {
-    let data = fs::read("../bank.bin").unwrap();
-    let mut bank: Bank = Bank::decode(&*data).unwrap();
-
+    let mut bank = get_bank();
     sanitize_bank(&mut bank);
 
     let mut seen: HashSet<String> = bank
@@ -163,7 +160,5 @@ pub async fn fetch_foods() {
     println!("Location Verification: {}", bank.locations.len());
 
     sanitize_bank(&mut bank);
-    let encoded_bytes = bank.encode_to_vec();
-
-    fs::write("../bank.bin", encoded_bytes).unwrap();
+    write_bank(&bank);
 }

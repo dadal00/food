@@ -134,13 +134,14 @@
 //! ```sh
 //! just erase
 //! ```
-use std::{sync::Arc, time::Duration};
+use std::time::Duration;
 
 use axum::{
     Router,
     http::{Method, header::CONTENT_TYPE},
     routing::get,
 };
+
 use signal::{
     ctrl_c,
     unix::{SignalKind, signal},
@@ -154,29 +155,17 @@ pub mod config;
 pub mod database;
 pub mod routes;
 pub mod search;
+pub mod state;
 pub mod user;
 
-use config::Config;
 use routes::{hello_handler, search_handler};
-
-pub struct State {
-    pub config: Config,
-}
-
-impl State {
-    fn new() -> Arc<Self> {
-        let config = Config::load();
-
-        Arc::new(Self { config })
-    }
-}
+use state::State;
 
 pub async fn start_server() {
     fmt().with_env_filter(EnvFilter::from_default_env()).init();
 
     info!("Initializing state...");
-
-    let state = State::new();
+    let state = State::new().await;
 
     info!("Starting server...");
 
@@ -195,7 +184,6 @@ pub async fn start_server() {
     info!("Binding to {address}");
 
     let listener = TcpListener::bind(&address).await.unwrap();
-
     info!("Server running on {address}");
 
     axum::serve(listener, app)

@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
+use bank::foods::{Bank, Item as ProtoItem};
 use chrono::prelude::*;
-use proto::foods::{Bank, Item as ProtoItem};
 use regex::Regex;
 use serde_json::json;
 

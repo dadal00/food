@@ -20,3 +20,22 @@
 //! - Atomic operations, Redis loads operations into a queue
 //! - Estimated memory usage:
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
+use std::time::Duration;
+
+use redis::{
+    Client,
+    aio::{ConnectionManager, ConnectionManagerConfig},
+};
+
+pub async fn init_redis(redis_url: &str) -> ConnectionManager {
+    let client = Client::open(redis_url).unwrap();
+
+    let config = ConnectionManagerConfig::new()
+        .set_number_of_retries(1)
+        .set_connection_timeout(Some(Duration::from_millis(100)));
+
+    client
+        .get_connection_manager_with_config(config)
+        .await
+        .unwrap()
+}

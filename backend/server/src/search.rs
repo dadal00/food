@@ -51,3 +51,10 @@
 //! ```sh
 //! curl -H "Authorization: Bearer $(cat /run/secrets/MEILI_MASTER_KEY)" http://localhost:7700/keys
 //! ```
+use std::sync::Arc;
+
+use meilisearch_sdk::client::Client;
+
+pub async fn init_meilisearch(meili_url: &str, meili_admin_key: &str) -> Arc<Client> {
+    Arc::new(Client::new(meili_url, Some(meili_admin_key)).unwrap())
+}

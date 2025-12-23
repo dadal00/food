@@ -13,6 +13,11 @@ services:
     environment:
       - RUST_LOG=${RUST_LOG}
       - RUST_PORT=${RUST_PORT}
+      # Microservices
+      - MEILI_URL=${MEILI_URL}
+      - REDIS_URL=${REDIS_URL}
+    ports:
+      - ${RUST_PORT}:${RUST_PORT}
 
   meilisearch:
     image: dummy_meili:latest

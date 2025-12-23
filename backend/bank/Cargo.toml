@@ -1,5 +1,5 @@
 [package]
-name = "proto"
+name = "bank"
 version.workspace = true
 edition.workspace = true
 
@@ -8,6 +8,7 @@ ignored = ["prost"]
 
 [dependencies]
 prost = "0.14.1"
+reqwest = "0.12.28"
 
 [build-dependencies]
 prost-build = "0.14.1"
