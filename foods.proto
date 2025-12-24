@@ -2,9 +2,14 @@ syntax = "proto3";
 
 package foods;
 
+message Food {
+    uint32 id = 1;
+    string location = 2;
+}
+
 message Bank {
     uint32 next_food_id = 1;
     uint32 next_location_id = 2;
-    map<string, uint32> foods = 3;
+    map<string, Food> foods = 3;
     map<string, uint32> locations = 4;
 }

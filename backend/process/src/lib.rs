@@ -74,18 +74,24 @@
 //!
 //! 9. Mark all bitmaps to be updated. Some flag to allow Redis user bitmaps to be updated next time we fetch their data.
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
+use std::collections::hash_map::Entry;
+
 use reqwest::Client;
 
 pub mod models;
 pub mod utils;
 
-use bank::{foods::Bank, get_bank, write_bank};
+use bank::{
+    foods::{Bank, Food},
+    get_bank, write_bank,
+};
 use models::{ENDPOINT, Response};
-use utils::{build_payload, sanitize, sanitize_bank, today_formatted};
+use utils::{build_payload, reset_locations, sanitize, sanitize_bank, today_formatted};
 
 pub async fn load_foods() {
     let mut bank = get_bank();
     sanitize_bank(&mut bank);
+    reset_locations(&mut bank);
 
     println!("Loaded Foods: {}", bank.foods.len());
     println!("Loaded Locations: {}\n", bank.locations.len());
@@ -120,29 +126,46 @@ async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
     let mut new_locations = 0;
     let mut new_items = 0;
     for court in json.data.dining_courts {
-        let mut sanitized = sanitize(&court.formal_name);
+        let mut sanitized_location = sanitize(&court.formal_name);
 
-        if !sanitized.is_empty() && !bank.locations.contains_key(&sanitized) {
-            println!("New location! {}", sanitized);
+        if sanitized_location.is_empty() {
+            continue;
+        }
 
-            bank.locations.insert(sanitized, bank.next_location_id);
+        match bank.locations.entry(sanitized_location.clone()) {
+            Entry::Vacant(entry) => {
+                println!("New location! {}", entry.key());
+                entry.insert(bank.next_location_id);
 
-            bank.next_location_id += 1;
-            new_locations += 1;
+                bank.next_location_id += 1;
+                new_locations += 1;
+            }
+            Entry::Occupied(_) => {}
         }
 
         for meal in court.daily_menu.meals {
             for station in meal.stations {
                 for item_shell in station.items {
-                    sanitized = sanitize(&item_shell.item.name);
+                    let sanitized_food = sanitize(&item_shell.item.name);
 
-                    if !sanitized.is_empty() && !bank.foods.contains_key(&sanitized) {
-                        println!("New item! {}", sanitized);
+                    if sanitized_food.is_empty() {
+                        continue;
+                    }
 
-                        bank.foods.insert(sanitized, bank.next_food_id);
+                    match bank.foods.entry(sanitized_food) {
+                        Entry::Vacant(entry) => {
+                            println!("New item! {}", entry.key());
+                            entry.insert(Food {
+                                id: bank.next_food_id,
+                                location: sanitized_location.clone(),
+                            });
 
-                        bank.next_food_id += 1;
-                        new_items += 1;
+                            bank.next_food_id += 1;
+                            new_items += 1;
+                        }
+                        Entry::Occupied(mut entry) => {
+                            entry.get_mut().location = sanitized_location.clone();
+                        }
                     }
                 }
             }

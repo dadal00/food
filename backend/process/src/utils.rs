@@ -7,6 +7,13 @@ use serde_json::json;
 
 use crate::models::QUERY;
 
+pub fn reset_locations(bank: &mut Bank) {
+    // erase foods' location
+    for value in bank.foods.values_mut() {
+        value.location.clear();
+    }
+}
+
 pub fn sanitize_bank(bank: &mut Bank) {
     sanitize_keys(&mut bank.foods);
     sanitize_keys(&mut bank.locations);
