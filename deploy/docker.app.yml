@@ -19,36 +19,7 @@ services:
     ports:
       - ${RUST_PORT}:${RUST_PORT}
 
-  meilisearch:
-    image: dummy_meili:latest
-    networks:
-      - app_network
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    volumes:
-      - ./meilisearch/data:/meili_data
-    secrets:
-      - MEILI_MASTER_KEY
-    command: sh -c "meilisearch --master-key $$(cat /run/secrets/MEILI_MASTER_KEY)"
-
-  redis:
-    image: dummy_redis:latest
-    networks:
-      - app_network
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    volumes:
-      - ./redis/data:/data
-
 secrets:
-  MEILI_MASTER_KEY:
-    external: true
   MEILI_ADMIN_KEY:
     external: true
 

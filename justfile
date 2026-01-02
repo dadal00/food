@@ -27,7 +27,7 @@ network:
 	docker network create --driver overlay --attachable --opt encrypted app_network
 
 init:
-	yes | just erase join network secrets
+	yes | just erase clean join network secrets
 
 
 
@@ -54,7 +54,7 @@ meili-key:
 [doc]
 grab-meili-key:
 	just secret MEILI_ADMIN_KEY 'abc'
-	just deploy debug
+	just deploy services
 
 	admin_key=`just meili-key` && \
 	just kill && \
@@ -68,20 +68,22 @@ grab-meili-key:
 [doc]
 build service="all":
 	if [ "{{service}}" == "all" ]; then \
-		envsubst < docker.build.yml | docker compose -f docker.build.yml build; \
+		docker compose -f docker.build.yml build; \
 	elif [ "{{service}}" == "custom" ]; then \
-		envsubst < docker.build.yml | docker compose -f docker.build.yml build ${CUSTOM_IMAGES}; \
+		docker compose -f docker.build.yml build ${CUSTOM_IMAGES}; \
 	else \
-		envsubst < docker.build.yml | docker compose -f docker.build.yml build {{service}}; \
+		docker compose -f docker.build.yml build {{service}}; \
 	fi
 
 deploy mode="default":	
 	just build
 
 	if [ "{{mode}}" == "debug" ]; then \
-		envsubst < deploy/docker.app.yml | docker stack deploy -c deploy/docker.app.yml app --detach=false; \
+		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=false; \
+	elif [ "{{mode}}" == "services" ]; then \
+		docker stack deploy -c deploy/docker.services.yml app --detach=false; \
 	else \
-	 	envsubst < deploy/docker.app.yml | docker stack deploy -c deploy/docker.app.yml app --detach=true; \
+		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=true; \
 	fi
 
 kill:

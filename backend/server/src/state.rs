@@ -20,7 +20,14 @@ impl State {
         let config = Config::load();
 
         let (redis_connection, food_votes) = init_redis(&config.redis_url, &bank).await;
-        let meili_client = init_meilisearch(&config.meili_url, &config.meili_key, food_votes).await;
+
+        let meili_client = init_meilisearch(
+            &config.meili_url,
+            &config.meili_key,
+            &bank.foods,
+            &food_votes,
+        )
+        .await;
 
         Arc::new(Self {
             bank,

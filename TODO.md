@@ -1,15 +1,26 @@
 # TODO List
 
+- [ ] Changing names of items to perhaps just be capital since no need to keep for meilisearch id
+
 - [ ] Monitoring stack
 
 - [ ] Rust communication with proxy (exposing ports)
-- [ ] Rust communication with other containers
 - [ ] Rust endpoints
 - [ ] Basic frontend
-- [ ] Mount proto files
-- [ ] Future Docker protoc installation
 
 # Done
+
+## 1/2/26
+
+- [x] Meilisearch initialization fix, using id as unique identifier instead of string due to certain naming conventions like no spaces
+
+## 12/23/25
+
+- [x] Rust communication with other containers
+- [x] Redis initialization
+- [x] Process + protobuf redesign to include location and maps
+- [x] Fixed getting admin key bug with Meilisearch, only deploying services as the main app needs the key
+- [x] Removed envsubt as does not seem to be doing anything
 
 ## 12/16/25
 

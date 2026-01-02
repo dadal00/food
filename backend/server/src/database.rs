@@ -20,7 +20,7 @@
 //! - Atomic operations, Redis loads operations into a queue
 //! - Estimated memory usage:
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
-use std::{collections::HashMap, hash::Hash, time::Duration};
+use std::{collections::HashMap, time::Duration};
 
 use bank::foods::Bank;
 use once_cell::sync::Lazy;
@@ -54,10 +54,7 @@ static POPULATE_FOODS_SCRIPT: Lazy<Script> = Lazy::new(|| {
     )
 });
 
-pub async fn init_redis(
-    redis_url: &str,
-    bank: &Bank,
-) -> (ConnectionManager, HashMap<String, String>) {
+pub async fn init_redis(redis_url: &str, bank: &Bank) -> (ConnectionManager, HashMap<String, u32>) {
     let config = ConnectionManagerConfig::new()
         .set_number_of_retries(1)
         .set_connection_timeout(Some(Duration::from_millis(100)));
@@ -80,7 +77,7 @@ fn map_keys_to_zero_vec<T>(map: &HashMap<String, T>) -> Vec<(&str, String)> {
 pub async fn populate_foods<T>(
     foods_map: &HashMap<String, T>,
     connection_manager: &mut ConnectionManager,
-) -> HashMap<String, String> {
+) -> HashMap<String, u32> {
     // using a script instead of hset_multiple to avoid overwriting existing values
     let food_votes_vector: Vec<String> = POPULATE_FOODS_SCRIPT
         .key(FOODS_HASH)
@@ -91,6 +88,6 @@ pub async fn populate_foods<T>(
 
     food_votes_vector
         .chunks(2)
-        .map(|c| (c[0].clone(), c[1].clone()))
+        .map(|c| (c[0].clone(), c[1].parse::<u32>().unwrap()))
         .collect()
 }
