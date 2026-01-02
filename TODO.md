@@ -1,17 +1,23 @@
 # TODO List
 
-- [ ] Changing names of items to perhaps just be capital since no need to keep for meilisearch id
+- [ ] Rust endpoints
+
+  - [ ] Votes endpoint to update voting selection
+  - [ ] Verification endpoint that takes the email code
+
+- [ ] Rust search endpoint
+
+  - [ ] Able to take the same parameters as normal meilisearch, allowing for multiple uses such as fetch all, sort, filter, etc.
 
 - [ ] Monitoring stack
 
-- [ ] Rust communication with proxy (exposing ports)
-- [ ] Rust endpoints
 - [ ] Basic frontend
 
 # Done
 
 ## 1/2/26
 
+- [x] Rust port exposed
 - [x] Fetching foods from a range
 - [x] Maintaining capitals from original foods
 - [x] Remote fetch of custom images to avoid build times
