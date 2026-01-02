@@ -115,7 +115,7 @@ async fn upsert_items<T>(meili_client: Arc<Client>, index_name: &str, items: &[T
 where
     T: Serialize + Send + Sync,
 {
-    let result = meili_client
+    let _result = meili_client
         .index(index_name)
         .add_or_update(items, Some(id_name))
         .await
@@ -124,7 +124,8 @@ where
         .await
         .unwrap();
 
-    println!("Meili task result: {:?}", result);
+    #[cfg(feature = "verbose")]
+    println!("Meili task result: {:?}", _result);
 }
 
 // 2025-12-23 21:02:06 Meili task result: Failed

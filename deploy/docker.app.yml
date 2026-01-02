@@ -1,6 +1,6 @@
 services:
   rust:
-    image: app_rust:latest
+    image: ${RUST_IMAGE}
     networks:
       - app_network
     deploy:

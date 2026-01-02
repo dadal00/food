@@ -1,11 +1,4 @@
 services:
-  # App: Custom
-  app_rust:
-    build:
-      context: ./
-      dockerfile: ./backend/Dockerfile
-    image: app_rust:latest
-
   # App: External
   dummy_meili:
     build:

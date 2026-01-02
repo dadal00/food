@@ -1,6 +1,6 @@
 [alias]
 server = "run -p server"
-serverl = "run -p server --features local"
+serverv = "run -p server --features verbose"
 process = "run -p process --"
 processv = "run -p process --features verbose --"
 docs = "doc --no-deps --open"
