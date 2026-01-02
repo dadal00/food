@@ -87,14 +87,12 @@ grab-meili-key:
 # Debug deployment only finishes if containers sucessfully created
 [doc]
 build service="all":
-	if [ "{{service}}" == "all" ]; then \
-		docker compose -f docker.build.custom.yml -f docker.build.services.yml build; \
-	elif [ "{{service}}" == "custom" ]; then \
-		docker compose -f docker.build.custom.yml build; \
+	if [ "{{service}}" == "custom" ]; then \
+		docker buildx bake -f docker.build.custom.yml; \
 	elif [ "{{service}}" == "services" ]; then \
 		docker compose -f docker.build.services.yml build; \
 	else \
-		docker compose -f docker.build.services.yml build {{service}}; \
+		docker compose -f docker.build.custom.yml -f docker.build.services.yml build; \
 	fi
 
 deploy mode="default":

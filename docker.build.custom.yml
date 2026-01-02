@@ -13,4 +13,6 @@ services:
     build:
       context: ./
       dockerfile: ./backend/Dockerfile
+      platforms:
+        - "linux/arm64"
     image: ${RUST_IMAGE}
