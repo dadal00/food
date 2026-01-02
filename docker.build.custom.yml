@@ -4,4 +4,4 @@ services:
     build:
       context: ./
       dockerfile: ./backend/Dockerfile
-    image: app_rust:latest
+    image: ${RUST_IMAGE}

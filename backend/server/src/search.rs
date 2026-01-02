@@ -128,19 +128,6 @@ where
     println!("Meili task result: {:?}", _result);
 }
 
-// 2025-12-23 21:02:06 Meili task result: Failed
-// { content: FailedTask { error: MeilisearchError
-//     { error_message: "Document identifier `\"chimichurri sauce\"` is invalid.
-//     A document identifier can be of type integer or string, only composed of
-//     alphanumeric characters (a-z A-Z 0-9), hyphens (-) and underscores (_),
-//     and can not be more than 511 bytes.", error_code: InvalidDocumentId,
-//     error_type: InvalidRequest, error_link: "https://docs.meilisearch.com/errors#invalid_document_id" },
-//     task: SucceededTask { duration: 30ms, enqueued_at: 2025-12-24 5:02:06.296384881 +00:00:00,
-//         started_at: 2025-12-24 5:02:06.319848339 +00:00:00, finished_at: 2025-12-24 5:02:06.350406339 +00:00:00,
-//         canceled_by: None, index_uid: Some("foods"), error: None, remotes:
-//         None, update_type: DocumentAdditionOrUpdate { details: Some(DocumentAdditionOrUpdate
-//             { indexed_documents: Some(0), received_documents: 1249 }) }, uid: 3 } } }
-
 fn init_settings() -> Settings {
     Settings::new()
         .with_ranking_rules([

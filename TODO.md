@@ -12,6 +12,10 @@
 
 ## 1/2/26
 
+- [x] Fetching foods from a range
+- [x] Maintaining capitals from original foods
+- [x] Remote fetch of custom images to avoid build times
+- [x] Verbose feature for additional information messages
 - [x] Meilisearch initialization fix, using id as unique identifier instead of string due to certain naming conventions like no spaces
 
 ## 12/23/25
