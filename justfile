@@ -10,6 +10,23 @@ set shell := ["bash", "-uc"]
 hex:
 	openssl rand -hex 32
 
+clean-dir dir:
+    find {{dir}} -mindepth 1 ! -name '.gitignore' -exec rm -rf {} +
+
+clean-reverse-proxy:
+	just clean-dir deploy/reverse_proxy/log
+	just clean-dir deploy/reverse_proxy/cache
+	just clean-dir deploy/reverse_proxy/acme_registry
+
+clean-reusable:
+	just clean-dir deploy/redis/data
+	just clean-reverse-proxy
+
+clean:
+	@echo "Cleaning mounted volumes..."
+	just clean-dir deploy/meilisearch/data
+	just clean-reusable
+
 
 
 # Docker Utilities
@@ -26,6 +43,8 @@ leave:
 network:
 	docker network create --driver overlay --attachable --opt encrypted app_network
 
+# Clean has an argument now so remember it may take it as one, hence why we need all here
+[doc]
 init:
 	yes | just erase clean join network secrets
 
@@ -43,6 +62,7 @@ secrets mode="default":
 	else \
 		just hex | xargs -I{} just secret MEILI_MASTER_KEY "{}"; \
 		just grab-meili-key; \
+		just hex | xargs -I{} just secret JWT_KEY "{}"; \
 	fi
 	
 meili-key:
@@ -78,8 +98,12 @@ build service="all":
 	fi
 
 deploy mode="default":
+	just clean-reusable
+
 	if [ "{{mode}}" == "remote" ]; then \
 		export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
+		just build services; \
+	elif [ "{{mode}}" == "services" ]; then \
 		just build services; \
 	else \
 		just build; \
@@ -103,12 +127,16 @@ kill:
 		sleep 1; \
 	done
 
-clean-dir dir:
-    find {{dir}} -mindepth 1 ! -name '.gitignore' -exec rm -rf {} +
+# Rust Rpxy
+# Assuming proxy repo is a sibling
+# [doc]
+# proxy:
+# 	envsubst < rpxy.config.toml > config.toml
+# 	export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
 
-clean:
-    @echo "Cleaning mounted volumes..."
-    just clean-dir deploy/meilisearch/data
-    just clean-dir deploy/redis/data
+# 	cd ../rust-rpxy && \
+# 	cargo build --release && \
+# 	./target/release/rpxy --config ../food/config.toml
+	
 
 

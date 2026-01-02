@@ -1,11 +1,11 @@
 listen_port = 8080
 
 [apps]
-[apps.localhost]
-server_name = 'localhost'
+[apps.main]
+server_name = 'testing'
 
-[[apps.localhost.reverse_proxy]]
-upstream = [{ location = 'localhost:1111' }]
+[[apps.main.reverse_proxy]]
+upstream = [{ location = 'rust:1000' }]
 upstream_options = ["keep_original_host"]
 
 [experimental]
@@ -28,7 +28,7 @@ max_cache_each_size_on_memory = 4096
 
 [experimental.custom]
 # How long before another request from user for
-fast_rate_limit_ms = 200          # FAST endpoints such as search
-fast_paths = ["localhost/search"]
-slow_rate_limit_ms = 2000         # and all other endpoints
-max_entries = 10000               # Max number of cached entries any given rate limit interval
+fast_rate_limit_ms = 200        # FAST endpoints such as search
+fast_paths = ["testing/search"]
+slow_rate_limit_ms = 2000       # and all other endpoints
+max_entries = 10000             # Max number of cached entries any given rate limit interval

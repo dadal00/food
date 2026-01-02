@@ -1,4 +1,13 @@
 services:
+  reverse_proxy:
+    build:
+      # Assuming proxy repo is sibling
+      context: ../rust-rpxy
+      dockerfile: ./docker/Dockerfile
+      platforms:
+        - "linux/arm64"
+    image: reverse_proxy:latest
+
   # App: Custom
   app_rust:
     build:

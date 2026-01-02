@@ -1,4 +1,30 @@
 services:
+  reverse_proxy:
+    image: reverse_proxy:latest
+    networks:
+      - app_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    volumes:
+      - ./reverse_proxy/log:/rpxy/log:rw
+      - ./reverse_proxy/cache:/rpxy/cache:rw
+      - ./reverse_proxy/acme_registry:/rpxy/acme_registry:rw
+      - ./reverse_proxy/rpxy.config.toml:/etc/rpxy.toml:ro
+    secrets:
+      - JWT_KEY
+    environment:
+      - LOG_LEVEL=info
+      - LOG_TO_FILE=true
+      - HOST_USER=dadal
+      - HOST_UID=1001
+      - HOST_GID=1001
+    ports:
+      - 8080:8080
+      - 8443:8443
+
   rust:
     image: ${RUST_IMAGE}
     networks:
@@ -16,10 +42,10 @@ services:
       # Microservices
       - MEILI_URL=${MEILI_URL}
       - REDIS_URL=${REDIS_URL}
-    ports:
-      - ${RUST_PORT}:${RUST_PORT}
 
 secrets:
+  JWT_KEY:
+    external: true
   MEILI_ADMIN_KEY:
     external: true
 
