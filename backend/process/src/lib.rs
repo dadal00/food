@@ -76,6 +76,8 @@
 //!    Just check the length of the Redis bitmap, if its different, extend it. Also, add an extra bit to each location bitmap.
 use std::collections::hash_map::Entry;
 
+use chrono::{Duration, NaiveDate};
+use indicatif::{ProgressBar, ProgressStyle};
 use reqwest::Client;
 
 pub mod models;
@@ -86,9 +88,9 @@ use bank::{
     get_bank, write_bank,
 };
 use models::{ENDPOINT, Response};
-use utils::{build_payload, reset_locations, sanitize, sanitize_bank, today_formatted};
+use utils::{build_payload, format, reset_locations, sanitize, sanitize_bank, today};
 
-pub async fn load_foods() {
+pub async fn load_foods(days_before: u32, days_after: u32) {
     let mut bank = get_bank();
     sanitize_bank(&mut bank);
     reset_locations(&mut bank);
@@ -96,28 +98,27 @@ pub async fn load_foods() {
     println!("Loaded Foods: {}", bank.foods.len());
     println!("Loaded Locations: {}\n", bank.locations.len());
 
-    let (new_items, new_locations) = fetch_foods(&mut bank).await;
+    let (new_items, new_locations) = fetch_foods_range(&mut bank, days_before, days_after).await;
 
     if new_items == 0 && new_locations == 0 {
         println!("No new items or locations found. Exiting.");
-        return;
+    } else {
+        println!("Total New Items: {}", new_items);
+        println!("Total New Locations: {}\n", new_locations);
+
+        println!("Item Verification: {}", bank.foods.len());
+        println!("Location Verification: {}", bank.locations.len());
     }
-
-    println!("New Items: {}", new_items);
-    println!("New Locations: {}\n", new_locations);
-
-    println!("Item Verification: {}", bank.foods.len());
-    println!("Location Verification: {}", bank.locations.len());
 
     sanitize_bank(&mut bank);
     write_bank(&bank);
 }
 
-async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
-    let client = Client::new();
-    let payload = build_payload(&today_formatted());
+async fn fetch_foods(bank: &mut Bank, client: &Client, date: NaiveDate) -> (usize, usize) {
+    let payload = build_payload(&format(date));
     let res = client.post(ENDPOINT).json(&payload).send().await.unwrap();
 
+    #[cfg(feature = "verbose")]
     println!("Status: {}\n", res.status());
 
     let json_string = res.text().await.unwrap();
@@ -125,8 +126,12 @@ async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
 
     let mut new_locations = 0;
     let mut new_items = 0;
+
+    let mut location = String::new();
+    let is_today = date == today();
+
     for court in json.data.dining_courts {
-        let mut sanitized_location = sanitize(&court.formal_name);
+        let sanitized_location = sanitize(&court.formal_name);
 
         if sanitized_location.is_empty() {
             continue;
@@ -134,6 +139,7 @@ async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
 
         match bank.locations.entry(sanitized_location.clone()) {
             Entry::Vacant(entry) => {
+                #[cfg(feature = "verbose")]
                 println!("New location! {}", entry.key());
                 entry.insert(bank.next_location_id);
 
@@ -141,6 +147,10 @@ async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
                 new_locations += 1;
             }
             Entry::Occupied(_) => {}
+        }
+
+        if is_today {
+            location = sanitized_location.clone();
         }
 
         for meal in court.daily_menu.meals {
@@ -154,17 +164,19 @@ async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
 
                     match bank.foods.entry(sanitized_food) {
                         Entry::Vacant(entry) => {
+                            #[cfg(feature = "verbose")]
                             println!("New item! {}", entry.key());
+
                             entry.insert(Food {
                                 id: bank.next_food_id,
-                                location: sanitized_location.clone(),
+                                location: location.clone(),
                             });
 
                             bank.next_food_id += 1;
                             new_items += 1;
                         }
                         Entry::Occupied(mut entry) => {
-                            entry.get_mut().location = sanitized_location.clone();
+                            entry.get_mut().location = location.clone();
                         }
                     }
                 }
@@ -172,5 +184,40 @@ async fn fetch_foods(bank: &mut Bank) -> (usize, usize) {
         }
     }
 
+    (new_items, new_locations)
+}
+
+async fn fetch_foods_range(bank: &mut Bank, days_before: u32, days_after: u32) -> (usize, usize) {
+    let today = today();
+    let client = Client::new();
+
+    let pb = ProgressBar::new((days_before + days_after + 1) as u64);
+    pb.set_style(
+        ProgressStyle::with_template(
+            "{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} {msg}",
+        )
+        .unwrap()
+        .progress_chars("=> "),
+    );
+
+    let mut new_locations = 0;
+    let mut new_items = 0;
+
+    for offset in -(days_before as i32)..=(days_after as i32) {
+        let date = today + Duration::days(offset as i64);
+        pb.set_message(format!("Fetching {}", date));
+
+        let (fetched_items, fetched_locations) = fetch_foods(bank, &client, date).await;
+
+        new_items += fetched_items;
+        new_locations += fetched_locations;
+
+        println!("\n\nNew Items: {}", new_items);
+        println!("New Locations: {}\n", new_locations);
+
+        pb.inc(1);
+    }
+
+    pb.finish_with_message("Done");
     (new_items, new_locations)
 }

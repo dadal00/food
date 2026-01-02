@@ -27,9 +27,12 @@ pub fn build_payload(date: &str) -> serde_json::Value {
     })
 }
 
-pub fn today_formatted() -> String {
-    let today = Local::now().date_naive();
-    today.format("%Y-%m-%d").to_string()
+pub fn today() -> NaiveDate {
+    Local::now().date_naive()
+}
+
+pub fn format(date: NaiveDate) -> String {
+    date.format("%Y-%m-%d").to_string()
 }
 
 pub fn sanitize_keys<V>(map: &mut HashMap<String, V>) {
@@ -48,7 +51,7 @@ pub fn sanitize(input: &str) -> String {
     s = s.trim().to_string();
 
     let collapse = Regex::new(r" +").unwrap();
-    collapse.replace_all(&s, " ").into_owned().to_lowercase()
+    collapse.replace_all(&s, " ").into_owned()
 }
 
 #[cfg(test)]
@@ -58,7 +61,7 @@ mod tests {
     #[test]
     fn test_basic() {
         assert_eq!(sanitize("hello_world"), "hello world");
-        assert_eq!(sanitize("Rust-lang"), "rust-lang");
+        assert_eq!(sanitize("Rust-lang"), "Rust-lang");
         assert_eq!(sanitize("clean-this_text!"), "clean-this text");
     }
 

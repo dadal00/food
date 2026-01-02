@@ -30,8 +30,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y protobuf-compiler
 
-      - name: Process foods
-        run: cargo process
+      - name: Fetch today's foods
+        run: cargo processv 0 0
 
       - name: Check for changes
         run: |
