@@ -7,9 +7,42 @@ on:
 
 permissions:
   packages: write
-  contents: read
+  contents: write
 
 jobs:
+  cook:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Configure cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Cook and push
+        run: |
+          cargo install cargo-chef
+          cargo chef prepare --recipe-path recipe.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- recipe.json; then
+            echo "No changes in recipe.json"
+            exit 0
+          fi
+
+          echo "Changes detected — committing"
+          git add recipe.json
+          git commit -m "Update recipe.json"
+          git push origin HEAD:${GITHUB_REF_NAME}
+
   build:
     runs-on: ubuntu-latest
 
@@ -45,13 +78,12 @@ jobs:
           echo "REMOTE_MSG=${SANITIZED_MSG:-no-msg}" >> "$GITHUB_ENV"
 
       - name: Build and push
-        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./backend/Dockerfile
           platforms: "linux/arm64"
-          push: true
-          cache-to: gha
-          cache-from: gha
+          push: ${{ github.ref == 'refs/heads/main' }}
+          cache-to: type=gha
+          cache-from: type=gha
           tags: ${{ env.REMOTE }},${{ env.REMOTE_SHA }},${{ env.REMOTE_MSG }}
