@@ -71,11 +71,11 @@ jobs:
           echo "REMOTE=$REMOTE" >> "$GITHUB_ENV"
 
           SHA="${{ github.sha }}"
-          echo "REMOTE_SHA=${SHA:0:7}" >> "$GITHUB_ENV"
+          echo "REMOTE_SHA=$REMOTE:${SHA:0:7}" >> "$GITHUB_ENV"
 
           RAW_MSG="${{ github.event.head_commit.message }}"
           SANITIZED_MSG=$(printf '%s' "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
-          echo "REMOTE_MSG=${SANITIZED_MSG:-no-msg}" >> "$GITHUB_ENV"
+          echo "REMOTE_MSG=$REMOTE:${SANITIZED_MSG:-no-msg}" >> "$GITHUB_ENV"
 
       - name: Build and push
         uses: docker/build-push-action@v6

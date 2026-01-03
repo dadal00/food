@@ -10,7 +10,9 @@ COPY ./foods.proto /app/foods.proto
 COPY ./backend /app/backend
 
 WORKDIR /app/backend
+RUN cargo chef prepare --recipe-path recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
+
 RUN cargo build --release -p server
 RUN strip target/release/server
 
