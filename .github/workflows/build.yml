@@ -15,22 +15,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-        with:
-          repository: dadal00/rust-rpxy
-          path: rust-rpxy
-      - uses: actions/checkout@v6
-        with:
-          path: food
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
-      - uses: taiki-e/install-action@just
-      - name: Build
-        working-directory: food
-        run: just build custom
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -39,32 +28,30 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push, if on main
-        if: github.ref == 'refs/heads/main'
-        working-directory: food
+      - name: Generate image tags
         run: |
           set -a
           source .env
           set +a
 
-          for CUSTOM in ${CUSTOM_IMAGES}; do
-            LOCAL="${CUSTOM}:latest"
-            REMOTE="ghcr.io/${{ github.repository_owner }}/${CUSTOM}"
+          REMOTE="ghcr.io/${{ github.repository_owner }}/${RUST_IMAGE}"
+          echo "REMOTE_LATEST=$REMOTE:latest" >> "$GITHUB_ENV"
 
-            REMOTE_LATEST="$REMOTE:latest"
+          SHA="${{ github.sha }}"
+          echo "REMOTE_SHA=$REMOTE:${SHA:0:7}" >> "$GITHUB_ENV"
 
-            SHA="${{ github.sha }}"
-            REMOTE_SHA="$REMOTE:${SHA:0:7}"
+          RAW_MSG="${{ github.event.head_commit.message }}"
+          SANITIZED_MSG=$(printf '%s' "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
+          echo "REMOTE_MSG=$REMOTE:${SANITIZED_MSG:-no-msg}" >> "$GITHUB_ENV"
 
-            RAW_MSG="${{ github.event.head_commit.message }}"
-            SANITIZED_MSG=$(printf '%s' "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
-            REMOTE_MSG="$REMOTE:${SANITIZED_MSG:-"no-msg"}"
-
-            docker tag "$LOCAL" "$REMOTE_LATEST"
-            docker tag "$LOCAL" "$REMOTE_SHA"
-            docker tag "$LOCAL" "$REMOTE_MSG"
-
-            docker push "$REMOTE_LATEST"
-            docker push "$REMOTE_SHA"
-            docker push "$REMOTE_MSG"
-          done
+      - name: Build and push
+        if: github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./backend/Dockerfile
+          platforms: "linux/arm64"
+          push: true
+          cache-to: gha
+          cache-from: gha
+          tags: ${{ env.REMOTE_LATEST }},${{ env.REMOTE_SHA }},${{ env.REMOTE_MSG }}
