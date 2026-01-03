@@ -1,17 +1,17 @@
 services:
   # App: External
-  dummy_meili:
+  meilisearch:
     build:
       context: ./deploy/meilisearch
     image: dummy_meili:latest
 
-  dummy_redis:
+  redis:
     build:
       context: ./deploy/redis
     image: dummy_redis:latest
 
   # Monitoring
-  dummy_grafana:
+  grafana:
     build:
       context: ./monitor/grafana
     image: dummy_grafana:latest

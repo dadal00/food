@@ -83,33 +83,64 @@ grab-meili-key:
 
 
 
+# Rust Rpxy
+# Assuming proxy repo is a sibling
+[doc]
+proxy-submodules:
+	cd ../rust-rpxy && \
+	git submodule update --init
+
+proxy-init:
+    just proxy-submodules
+
+    if [ ! -d deploy/reverse_proxy/log ]; then \
+    	mkdir deploy/reverse_proxy/log; \
+    fi
+    if [ ! -d deploy/reverse_proxy/cache ]; then \
+        mkdir deploy/reverse_proxy/cache; \
+    fi
+    if [ ! -d deploy/reverse_proxy/acme_registry ]; then \
+        mkdir deploy/reverse_proxy/acme_registry; \
+    fi
+# proxy:
+# 	envsubst < rpxy.config.toml > config.toml
+# 	export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
+
+# 	cd ../rust-rpxy && \
+# 	cargo build --release && \
+# 	./target/release/rpxy --config ../food/config.toml
+
+
+
 # Deployment 
 # Debug deployment only finishes if containers sucessfully created
 [doc]
 build service="all":
 	if [ "{{service}}" == "custom" ]; then \
+		just proxy-submodules; \
 		docker buildx bake -f docker.build.custom.yml; \
 	elif [ "{{service}}" == "services" ]; then \
-		docker compose -f docker.build.services.yml build; \
+	    docker buildx bake -f docker.build.services.yml; \
 	else \
-		docker compose -f docker.build.custom.yml -f docker.build.services.yml build; \
+		docker buildx bake -f docker.build.custom.yml -f docker.build.services.yml; \
 	fi
 
-deploy mode="default":
+deploy target="all":
+	just proxy-init
 	just clean-reusable
 
-	if [ "{{mode}}" == "remote" ]; then \
+	if [ "{{target}}" == "remote" ]; then \
 		export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
 		just build services; \
-	elif [ "{{mode}}" == "services" ]; then \
+	elif [ "{{target}}" == "services" ]; then \
 		just build services; \
 	else \
 		just build; \
 	fi
 
-	if [ "{{mode}}" == "debug" ]; then \
+	if [ "{{target}}" == "debug" ]; then \
 		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=false; \
-	elif [ "{{mode}}" == "services" ]; then \
+	elif [ "{{target}}" == "services" ]; then \
 		docker stack deploy -c deploy/docker.services.yml app --detach=false; \
 	else \
 		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=true; \
@@ -124,17 +155,6 @@ kill:
 		printf "."; \
 		sleep 1; \
 	done
-
-# Rust Rpxy
-# Assuming proxy repo is a sibling
-# [doc]
-# proxy:
-# 	envsubst < rpxy.config.toml > config.toml
-# 	export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
-
-# 	cd ../rust-rpxy && \
-# 	cargo build --release && \
-# 	./target/release/rpxy --config ../food/config.toml
 	
 
 
