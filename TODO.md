@@ -1,5 +1,7 @@
 # TODO List
 
+- [ ] Change setup to use Docker build/push action for CI speedup by using the caching, mainly for the proxy + backend rust builds
+
 - [ ] Rust endpoints
 
   - [ ] Votes endpoint to update voting selection
@@ -17,6 +19,7 @@
 
 ## 1/2/26
 
+- [x] Proxy docker image working with backend
 - [x] Rust port exposed
 - [x] Fetching foods from a range
 - [x] Maintaining capitals from original foods
