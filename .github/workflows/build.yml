@@ -34,7 +34,8 @@ jobs:
           source .env
           set +a
 
-          echo "REMOTE=ghcr.io/${{ github.repository_owner }}/${RUST_IMAGE}" >> "$GITHUB_ENV"
+          REMOTE="ghcr.io/${{ github.repository_owner }}/${RUST_IMAGE}"
+          echo "REMOTE=$REMOTE" >> "$GITHUB_ENV"
 
           SHA="${{ github.sha }}"
           echo "REMOTE_SHA=$REMOTE:${SHA:0:7}" >> "$GITHUB_ENV"
