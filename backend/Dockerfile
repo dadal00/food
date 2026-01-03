@@ -16,6 +16,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 RUN cargo build --release -p server
 RUN strip target/release/server
 
-FROM debian:trixie-slim@sha256:4bcb9db66237237d03b55b969271728dd3d955eaaa254b9db8a3db94550b1885
+FROM alpine:3.23@sha256:51183f2cfa6320055da30872f211093f9ff1d3cf06f39a0bdb212314c5dc7375
+RUN apk add --no-cache libgcc
 COPY --from=0 /app/backend/target/release/server .
 CMD ["/server"]
