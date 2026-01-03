@@ -67,8 +67,8 @@ jobs:
           source .env
           set +a
 
-          REMOTE="ghcr.io/${{ github.repository_owner }}/${RUST_IMAGE}"
-          echo "REMOTE=$REMOTE" >> "$GITHUB_ENV"
+          REMOTE="ghcr.io/${{ github.repository_owner }}/${RUST_NAME}"
+          echo "REMOTE_LATEST=$REMOTE:latest" >> "$GITHUB_ENV"
 
           SHA="${{ github.sha }}"
           echo "REMOTE_SHA=$REMOTE:${SHA:0:7}" >> "$GITHUB_ENV"
@@ -86,4 +86,4 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }}
           cache-to: type=gha
           cache-from: type=gha
-          tags: ${{ env.REMOTE }},${{ env.REMOTE_SHA }},${{ env.REMOTE_MSG }}
+          tags: ${{ env.REMOTE_LATEST }},${{ env.REMOTE_SHA }},${{ env.REMOTE_MSG }}
