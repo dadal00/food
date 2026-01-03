@@ -1,5 +1,7 @@
 # TODO List
 
+- [ ] Modify repo structure to use the reverse proxy as a submodule instead of a sibling
+
 - [ ] Change setup to use Docker build/push action for CI speedup by using the caching, mainly for the proxy + backend rust builds
 
 - [ ] Rust endpoints
