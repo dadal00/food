@@ -2,8 +2,6 @@
 
 - [ ] Modify repo structure to use the reverse proxy as a submodule instead of a sibling
 
-- [ ] Change setup to use Docker build/push action for CI speedup by using the caching, mainly for the proxy + backend rust builds
-
 - [ ] Rust endpoints
 
   - [ ] Votes endpoint to update voting selection
@@ -17,7 +15,17 @@
 
 - [ ] Basic frontend
 
+- [ ] Github actions to ssh in to change deployment
+
 # Done
+
+## 1/3/26
+
+- [x] Docker build/push CI using caching for both backend and proxy
+
+  - [x] Separating proxy and backend builds by repo CI for parralel execution
+
+- [x]Remote custom image deployment
 
 ## 1/2/26
 
