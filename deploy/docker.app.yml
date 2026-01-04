@@ -1,6 +1,6 @@
 services:
   reverse_proxy:
-    image: reverse_proxy:latest
+    image: ${PROXY_IMAGE}
     networks:
       - app_network
     deploy:

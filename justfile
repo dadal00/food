@@ -116,23 +116,17 @@ proxy-init:
 # Debug deployment only finishes if containers sucessfully created
 [doc]
 build service="all":
-	if [ "{{service}}" == "custom" ]; then \
-		just proxy-submodules; \
-		docker buildx bake -f docker.build.custom.yml; \
-	elif [ "{{service}}" == "services" ]; then \
-	    docker buildx bake -f docker.build.services.yml; \
+	if [ "{{service}}" == "services" ]; then \
+	    docker buildx bake -f docker.build.yml meilisearch redis grafana; \
 	else \
-		docker buildx bake -f docker.build.custom.yml -f docker.build.services.yml; \
+		docker buildx bake -f docker.build.yml; \
 	fi
 
 deploy target="all":
 	just proxy-init
 	just clean-reusable
 
-	if [ "{{target}}" == "remote" ]; then \
-		export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
-		just build services; \
-	elif [ "{{target}}" == "services" ]; then \
+	if [ "{{target}}" == "services" ] || [ "{{target}}" == "remote" ]; then \
 		just build services; \
 	else \
 		just build; \
@@ -142,6 +136,10 @@ deploy target="all":
 		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=false; \
 	elif [ "{{target}}" == "services" ]; then \
 		docker stack deploy -c deploy/docker.services.yml app --detach=false; \
+	elif [ "{{target}}" == "remote" ]; then \
+		PROXY_IMAGE="ghcr.io/dadal00/reverse_proxy:latest" \
+		RUST_IMAGE="ghcr.io/dadal00/app_rust:latest" \
+		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=false; \
 	else \
 		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=true; \
 	fi

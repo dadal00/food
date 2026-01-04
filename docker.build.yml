@@ -6,7 +6,7 @@ services:
       dockerfile: ./docker/Dockerfile
       platforms:
         - "linux/arm64"
-    image: reverse_proxy:latest
+    image: ${PROXY_IMAGE}
 
   # App: Custom
   app_rust:
@@ -16,3 +16,20 @@ services:
       platforms:
         - "linux/arm64"
     image: ${RUST_IMAGE}
+
+  # App: External
+  meilisearch:
+    build:
+      context: ./deploy/meilisearch
+    image: dummy_meili:latest
+
+  redis:
+    build:
+      context: ./deploy/redis
+    image: dummy_redis:latest
+
+  # Monitoring
+  grafana:
+    build:
+      context: ./monitor/grafana
+    image: dummy_grafana:latest

@@ -4,7 +4,6 @@ ENV RUSTFLAGS="-C target-feature=-crt-static"
 RUN apk add --no-cache musl-dev openssl-dev pkgconfig protobuf
 
 WORKDIR /app
-COPY ./bank.bin /app/bank.bin
 COPY ./foods.proto /app/foods.proto
 COPY ./backend /app/backend
 
