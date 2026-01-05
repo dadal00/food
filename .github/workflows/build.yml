@@ -40,9 +40,16 @@ jobs:
           SHA="${{ github.sha }}"
           echo "REMOTE_SHA=$REMOTE:${SHA:0:7}" >> "$GITHUB_ENV"
 
-          RAW_MSG="${{ github.event.head_commit.message }}"
-          SANITIZED_MSG=$(printf '%s' "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
-          echo "REMOTE_MSG=$REMOTE:${SANITIZED_MSG:-no-msg}" >> "$GITHUB_ENV"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            RAW_MSG="${{ github.event.head_commit.message }}"
+            SANITIZED_MSG=$(printf '%s' "$RAW_MSG" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9._-')
+
+            TAG="${SANITIZED_MSG:-no-msg}"
+          else
+            TAG="dev"
+          fi
+
+          echo "REMOTE_MSG=$REMOTE:$TAG" >> "$GITHUB_ENV"
 
       - name: Build and push
         uses: docker/build-push-action@v6
