@@ -1,7 +1,5 @@
 # TODO List
 
-- [ ] Modify repo structure to use the reverse proxy as a submodule instead of a sibling
-
 - [ ] Rust endpoints
 
   - [ ] Votes endpoint to update voting selection
@@ -13,11 +11,15 @@
 
 - [ ] Monitoring stack
 
-- [ ] Basic frontend
+- [ ] Basic frontend as submodule
 
 - [ ] Github actions to ssh in to change deployment
 
 # Done
+
+## 1/6/26
+
+- [x] Reverse proxy as submodule
 
 ## 1/3/26
 
