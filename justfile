@@ -87,10 +87,11 @@ grab-meili-key:
 # Assuming proxy repo is a sibling
 [doc]
 proxy-submodules:
-	cd ../rust-rpxy && \
+	cd ./submodules/rust-rpxy && \
 	git submodule update --init
 
 proxy-init:
+    git submodule update --init
     just proxy-submodules
 
     if [ ! -d deploy/reverse_proxy/log ]; then \
