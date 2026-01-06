@@ -1,0 +1,4 @@
+[submodule "submodules/rust-rpxy"]
+	path = submodules/rust-rpxy
+	url = https://github.com/dadal00/rust-rpxy.git
+	branch = base
