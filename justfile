@@ -91,7 +91,7 @@ proxy-submodules:
 	git submodule update --init
 
 proxy-init:
-    git submodule update --init
+    git submodule update --init --remote
     just proxy-submodules
 
     if [ ! -d deploy/reverse_proxy/log ]; then \
