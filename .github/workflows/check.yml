@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - "**"
+    paths:
+      - backend/**/*.rs
+      - backend/**/Cargo.toml
+      - backend/Cargo.lock
+      - foods.proto
 
 jobs:
   backend:
