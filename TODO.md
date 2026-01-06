@@ -29,7 +29,7 @@
 
   - [x] Separating proxy and backend builds by repo CI for parralel execution
 
-- [x]Remote custom image deployment
+- [x] Remote custom image deployment
 
 ## 1/2/26
 
