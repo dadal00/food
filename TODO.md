@@ -2,7 +2,7 @@
 
 - [ ] Rust endpoints
 
-  - [ ] Votes endpoint to update voting selection
+  - [ ] Votes endpoint to update user voting selection, test increment + decrement, require user authentication
   - [ ] Verification endpoint that takes the email code
 
 - [ ] Rust search endpoint
@@ -20,6 +20,8 @@
 # Done
 
 ## 1/6/26
+
+- [x] Skeleton for sending votes to increment/decrement Redis counters
 
 - [x] Reducing excessive workflows using conditional file changes
 
