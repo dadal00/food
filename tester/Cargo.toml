@@ -1,11 +1,11 @@
 [package]
 name = "tester"
-version.workspace = true
-edition.workspace = true
+version = "0.1.0"
+edition = "2024"
 
 [package.metadata.cargo-shear]
 ignored = ["prost"]
 
 [dependencies]
-bank = { path = "../bank", features = ["payloads"] }
+bank = { path = "../backend/bank", features = ["payloads"] }
 prost = "0.14.1"
