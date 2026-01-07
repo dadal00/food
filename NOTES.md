@@ -2,6 +2,8 @@
 
 redis-cli
 
+HGET foods "Dill Pickle Slices"
+
 # Meilisearch
 
 Get first 10 items in the index

@@ -125,7 +125,9 @@ build service="all":
 
 deploy target="all":
 	just proxy-init
-	just clean-reusable
+	if [ "{{target}}" != "production" ]; then \
+		just clean-reusable; \
+	fi
 
 	if [ "{{target}}" == "services" ] || [ "{{target}}" == "remote" ]; then \
 		just build services; \

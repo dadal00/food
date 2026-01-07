@@ -108,8 +108,12 @@ static UPDATE_FOODS_SCRIPT: Lazy<Script> = Lazy::new(|| {
         for i = 1, #ARGV, 2 do
             local food_key = ARGV[i]
             local amount = tonumber(ARGV[i + 1])
-
-            redis.call("HINCRBY", hash, food_key, amount)
+            
+            local current = tonumber(redis.call("HGET", hash, food_key))
+            
+            if current + amount >= 0 then
+                redis.call("HINCRBY", hash, food_key, amount)
+            end
         end
         "#,
     )

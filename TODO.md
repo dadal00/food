@@ -1,5 +1,12 @@
 # TODO List
 
+- [ ] Refactor routes/recent changes
+
+- [ ] Cron job to sync votes for Meilisearch and Redis
+- [ ] Cron job to pull remote bank each day
+
+  - [ ] Triggering updating user vote maps if next id or length is different
+
 - [ ] Rust endpoints
 
   - [ ] Votes endpoint to update user voting selection, test increment + decrement, require user authentication
@@ -20,6 +27,8 @@
 # Done
 
 ## 1/6/26
+
+- [x] just deployment for production to NOT clear data
 
 - [x] Skeleton for sending votes to increment/decrement Redis counters
 
