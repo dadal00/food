@@ -1,5 +1,7 @@
 # TODO List
 
+- [ ] Proxy environment variable substitution
+
 - [ ] Refactor routes/recent changes
 
 - [ ] Cron job to sync votes for Meilisearch and Redis
