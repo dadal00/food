@@ -5,6 +5,7 @@ RUN apk add --no-cache musl-dev openssl-dev pkgconfig protobuf
 
 WORKDIR /app
 COPY ./foods.proto /app/foods.proto
+COPY ./payloads.proto /app/payloads.proto
 COPY ./backend /app/backend
 
 WORKDIR /app/backend

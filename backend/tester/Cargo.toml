@@ -1,5 +1,5 @@
 [package]
-name = "bank"
+name = "tester"
 version.workspace = true
 edition.workspace = true
 
@@ -7,11 +7,5 @@ edition.workspace = true
 ignored = ["prost"]
 
 [dependencies]
+bank = { path = "../bank", features = ["payloads"] }
 prost = "0.14.1"
-reqwest = "0.12.28"
-
-[build-dependencies]
-prost-build = "0.14.1"
-
-[features]
-payloads = []

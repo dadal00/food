@@ -3,7 +3,5 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace]
-members = ["server", "process", "bank"]
+members = ["server", "process", "bank", "tester"]
 resolver = "3"
-
-# cargo shear --fix

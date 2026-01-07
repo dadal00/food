@@ -8,6 +8,8 @@
 - [ ] Rust search endpoint
 
   - [ ] Able to take the same parameters as normal meilisearch, allowing for multiple uses such as fetch all, sort, filter, etc.
+  - [ ] Frontend exposed: filters, sorting, limit, offset
+  - [ ] Backend core: filters, sorting, limit (number of results), offset, attribute to highlight, highlight tag
 
 - [ ] Monitoring stack
 

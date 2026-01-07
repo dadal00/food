@@ -139,7 +139,7 @@ use std::time::Duration;
 use axum::{
     Router,
     http::{Method, header::CONTENT_TYPE},
-    routing::get,
+    routing::{get, post},
 };
 
 use signal::{
@@ -153,12 +153,13 @@ use tracing_subscriber::{EnvFilter, fmt};
 
 pub mod config;
 pub mod database;
+pub mod error;
 pub mod routes;
 pub mod search;
 pub mod state;
 pub mod user;
 
-use routes::{hello_handler, search_handler};
+use routes::{search_handler, votes_handler};
 use state::State;
 
 pub async fn start_server() {
@@ -175,7 +176,7 @@ pub async fn start_server() {
         .max_age(Duration::from_secs(60 * 60));
 
     let app = Router::new()
-        .route("/hello", get(hello_handler))
+        .route("/votes", post(votes_handler))
         .route("/search", get(search_handler))
         .layer(cors)
         .with_state(state.clone());

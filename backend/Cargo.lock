@@ -1828,6 +1828,7 @@ dependencies = [
  "once_cell",
  "redis",
  "serde",
+ "thiserror 2.0.17",
  "tokio",
  "tower-http",
  "tracing",
@@ -1999,6 +2000,14 @@ dependencies = [
  "once_cell",
  "rustix",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "tester"
+version = "0.1.0"
+dependencies = [
+ "bank",
+ "prost",
 ]
 
 [[package]]

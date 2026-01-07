@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package payloads;
+
+message Votes {
+    bytes old_bit_map = 1;
+    bytes new_bit_map = 2;
+}

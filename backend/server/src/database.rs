@@ -20,7 +20,11 @@
 //! - Atomic operations, Redis loads operations into a queue
 //! - Estimated memory usage:
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
-use std::{collections::HashMap, time::Duration};
+use std::{
+    collections::HashMap,
+    fmt::{Display, Formatter},
+    time::Duration,
+};
 
 use bank::foods::Bank;
 use once_cell::sync::Lazy;
@@ -29,30 +33,9 @@ use redis::{
     aio::{ConnectionManager, ConnectionManagerConfig},
 };
 
+use crate::error::AppError::{self, InternalError};
+
 const FOODS_HASH: &str = "foods";
-
-static POPULATE_FOODS_SCRIPT: Lazy<Script> = Lazy::new(|| {
-    Script::new(
-        r#"
-        local key = KEYS[1]
-        local result = {}
-
-        for i = 1, #ARGV, 2 do
-            local field = ARGV[i]
-            local value = ARGV[i + 1]
-
-            if redis.call("HEXISTS", key, field) == 0 then
-                redis.call("HSET", key, field, value)
-            end
-
-            table.insert(result, field)
-            table.insert(result, redis.call("HGET", key, field))
-        end
-
-        return result
-    "#,
-    )
-});
 
 pub async fn init_redis(redis_url: &str, bank: &Bank) -> (ConnectionManager, HashMap<String, u32>) {
     let config = ConnectionManagerConfig::new()
@@ -70,9 +53,34 @@ pub async fn init_redis(redis_url: &str, bank: &Bank) -> (ConnectionManager, Has
     (connection_manager, food_votes)
 }
 
-fn map_keys_to_zero_vec<T>(map: &HashMap<String, T>) -> Vec<(&str, String)> {
-    map.keys().map(|k| (k.as_str(), "0".to_string())).collect()
+fn map_keys_to_zero_vec<T>(map: &HashMap<String, T>) -> Vec<String> {
+    map.keys()
+        .flat_map(|k| vec![k.clone(), "0".to_string()])
+        .collect()
 }
+
+static POPULATE_FOODS_SCRIPT: Lazy<Script> = Lazy::new(|| {
+    Script::new(
+        r#"
+        local hash_key = KEYS[1]
+        local result = {}
+
+        for i = 1, #ARGV, 2 do
+            local food_key = ARGV[i]
+            local votes = ARGV[i + 1]
+
+            if redis.call("HEXISTS", hash_key, food_key) == 0 then
+                redis.call("HSET", hash_key, food_key, votes)
+            end
+
+            table.insert(result, food_key)
+            table.insert(result, redis.call("HGET", hash_key, food_key))
+        end
+
+        return result
+    "#,
+    )
+});
 
 pub async fn populate_foods<T>(
     foods_map: &HashMap<String, T>,
@@ -90,4 +98,59 @@ pub async fn populate_foods<T>(
         .chunks(2)
         .map(|c| (c[0].clone(), c[1].parse::<u32>().unwrap()))
         .collect()
+}
+
+static UPDATE_FOODS_SCRIPT: Lazy<Script> = Lazy::new(|| {
+    Script::new(
+        r#"
+        local hash = KEYS[1]
+
+        for i = 1, #ARGV, 2 do
+            local food_key = ARGV[i]
+            local amount = tonumber(ARGV[i + 1])
+
+            redis.call("HINCRBY", hash, food_key, amount)
+        end
+        "#,
+    )
+});
+
+#[derive(Copy, Clone)]
+pub enum Vote {
+    Increment = 1,
+    Decrement = -1,
+}
+
+impl Display for Vote {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let value = match self {
+            Vote::Increment => 1,
+            Vote::Decrement => -1,
+        };
+        write!(f, "{}", value)
+    }
+}
+
+pub async fn update_foods(
+    connection_manager: &mut ConnectionManager,
+    votes: &[(&str, Vote)],
+) -> Result<(), AppError> {
+    if votes.is_empty() {
+        return Ok(());
+    }
+
+    let mut arguments = Vec::with_capacity(votes.len() * 2);
+    for (food_key, vote) in votes {
+        arguments.push(food_key.to_string());
+        arguments.push(vote.to_string());
+    }
+
+    let _: () = UPDATE_FOODS_SCRIPT
+        .key(FOODS_HASH)
+        .arg(arguments)
+        .invoke_async(connection_manager)
+        .await
+        .map_err(|e| InternalError(Box::new(e)))?;
+
+    Ok(())
 }
