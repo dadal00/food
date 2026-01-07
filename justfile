@@ -86,12 +86,15 @@ grab-meili-key:
 # Rust Rpxy
 # Assuming proxy repo is a sibling
 [doc]
+proxy:
+	git submodule update --init --remote
+
 proxy-submodules:
 	cd ./submodules/rust-rpxy && \
 	git submodule update --init
 
 proxy-init:
-    git submodule update --init --remote
+    just proxy
     just proxy-submodules
 
     if [ ! -d deploy/reverse_proxy/log ]; then \
@@ -129,7 +132,7 @@ deploy target="all":
 		just clean-reusable; \
 	fi
 
-	if [ "{{target}}" == "services" ] || [ "{{target}}" == "remote" ]; then \
+	if [ "{{target}}" == "services" ] || [ "{{target}}" == "remote" ] || [ "{{target}}" == "production" ]; then \
 		just build services; \
 	else \
 		just build; \
@@ -139,7 +142,7 @@ deploy target="all":
 		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=false; \
 	elif [ "{{target}}" == "services" ]; then \
 		docker stack deploy -c deploy/docker.services.yml app --detach=false; \
-	elif [ "{{target}}" == "remote" ]; then \
+	elif [ "{{target}}" == "remote" ] || [ "{{target}}" == "production" ]; then \
 		PROXY_IMAGE="ghcr.io/dadal00/reverse_proxy:latest" \
 		RUST_IMAGE="ghcr.io/dadal00/app_rust:latest" \
 		docker stack deploy -c deploy/docker.services.yml -c deploy/docker.app.yml app --detach=false; \
