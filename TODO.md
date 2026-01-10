@@ -1,7 +1,5 @@
 # TODO List
 
-- [ ] Test and make sure cargo chef works for github actions
-
 - [ ] Cron job to sync votes for Meilisearch and Redis
 - [ ] Cron job to pull remote bank each day
 
@@ -27,6 +25,8 @@
 # Done
 
 ## 1/10/26
+
+- [x] Cargo Chef for Docker files + in Github actions
 
 - [x] Proxy environment variable substitution
 
