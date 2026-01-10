@@ -134,6 +134,7 @@
 //! ```sh
 //! just erase
 //! ```
+//!
 use std::time::Duration;
 
 use axum::{
