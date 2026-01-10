@@ -2,8 +2,6 @@
 
 - [ ] Proxy environment variable substitution
 
-- [ ] Refactor routes/recent changes
-
 - [ ] Cron job to sync votes for Meilisearch and Redis
 - [ ] Cron job to pull remote bank each day
 
@@ -27,6 +25,10 @@
 - [ ] Github actions to ssh in to change deployment
 
 # Done
+
+## 1/10/26
+
+- [x] Refactor routes/recent changes + reducing allocations
 
 ## 1/6/26
 
