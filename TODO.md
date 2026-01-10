@@ -1,5 +1,7 @@
 # TODO List
 
+- [ ] Test and make sure cargo chef works for github actions
+
 - [ ] Cron job to sync votes for Meilisearch and Redis
 - [ ] Cron job to pull remote bank each day
 
