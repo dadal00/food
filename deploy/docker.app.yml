@@ -12,7 +12,7 @@ services:
       - ./reverse_proxy/log:/rpxy/log:rw
       - ./reverse_proxy/cache:/rpxy/cache:rw
       - ./reverse_proxy/acme_registry:/rpxy/acme_registry:rw
-      - ./reverse_proxy/rpxy.config.toml:/etc/rpxy.toml:ro
+      - ./reverse_proxy/config.toml:/etc/rpxy.toml:ro
     secrets:
       - JWT_KEY
     environment:

@@ -1,7 +1,5 @@
 # TODO List
 
-- [ ] Proxy environment variable substitution
-
 - [ ] Cron job to sync votes for Meilisearch and Redis
 - [ ] Cron job to pull remote bank each day
 
@@ -27,6 +25,8 @@
 # Done
 
 ## 1/10/26
+
+- [x] Proxy environment variable substitution
 
 - [x] Refactor routes/recent changes + reducing allocations
 

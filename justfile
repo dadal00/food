@@ -89,12 +89,16 @@ grab-meili-key:
 proxy:
 	git submodule update --init --remote
 
+proxy-config:
+	cd ./deploy/reverse_proxy && envsubst < config > config.toml
+
 proxy-submodules:
 	cd ./submodules/rust-rpxy && \
 	git submodule update --init
 
 proxy-init:
     just proxy
+    just proxy-config
     just proxy-submodules
 
     if [ ! -d deploy/reverse_proxy/log ]; then \
@@ -106,13 +110,8 @@ proxy-init:
     if [ ! -d deploy/reverse_proxy/acme_registry ]; then \
         mkdir deploy/reverse_proxy/acme_registry; \
     fi
-# proxy:
-# 	envsubst < rpxy.config.toml > config.toml
-# 	export RUST_IMAGE := "ghcr.io/dadal00/app_rust:latest"; \
 
-# 	cd ../rust-rpxy && \
-# 	cargo build --release && \
-# 	./target/release/rpxy --config ../food/config.toml
+
 
 
 
