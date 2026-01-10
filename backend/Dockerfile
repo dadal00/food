@@ -4,20 +4,7 @@ RUN apk add --no-cache musl-dev openssl-dev pkgconfig protobuf
 
 WORKDIR /app/backend
 FROM base AS planner
-
-RUN mkdir -p ./server/src
-RUN echo "fn main() { println!(\"hello world\"); }" > ./server/src/main.rs
-COPY backend/server/Cargo.toml ./server/Cargo.toml
-
-RUN mkdir -p ./bank/src
-RUN echo "// empty lib" > ./bank/src/lib.rs
-COPY backend/bank/Cargo.toml ./bank/Cargo.toml
-
-RUN mkdir -p ./process/src
-RUN echo "fn main() { println!(\"hello world\"); }" > ./process/src/main.rs
-COPY backend/process/Cargo.toml ./process/Cargo.toml
-
-COPY backend/Cargo.toml backend/Cargo.lock ./
+COPY ./backend .
 RUN cargo chef prepare --recipe-path recipe.json
 
 WORKDIR /app/backend
