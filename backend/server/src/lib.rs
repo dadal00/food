@@ -158,6 +158,7 @@ pub mod routes;
 pub mod search;
 pub mod state;
 pub mod user;
+pub mod utils;
 
 use routes::{search_handler, votes_handler};
 use state::State;

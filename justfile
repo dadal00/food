@@ -159,6 +159,15 @@ kill:
 		printf "."; \
 		sleep 1; \
 	done
-	
+
+
+
+# Local Testing 
+[doc]
+payload:
+	cd tester && cargo payload
+
+jwt:
+	cd tester && cargo jwt
 
 

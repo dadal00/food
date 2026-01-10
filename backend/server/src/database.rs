@@ -20,11 +20,7 @@
 //! - Atomic operations, Redis loads operations into a queue
 //! - Estimated memory usage:
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
-use std::{
-    collections::HashMap,
-    fmt::{Display, Formatter},
-    time::Duration,
-};
+use std::{collections::HashMap, time::Duration};
 
 use bank::foods::Bank;
 use once_cell::sync::Lazy;
@@ -125,13 +121,12 @@ pub enum Vote {
     Decrement = -1,
 }
 
-impl Display for Vote {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let value = match self {
-            Vote::Increment => 1,
-            Vote::Decrement => -1,
-        };
-        write!(f, "{}", value)
+impl Vote {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Vote::Increment => "1",
+            Vote::Decrement => "-1",
+        }
     }
 }
 
@@ -145,8 +140,7 @@ pub async fn update_foods(
 
     let mut arguments = Vec::with_capacity(votes.len() * 2);
     for (food_key, vote) in votes {
-        arguments.push(food_key.to_string());
-        arguments.push(vote.to_string());
+        arguments.extend([*food_key, vote.as_str()]);
     }
 
     let _: () = UPDATE_FOODS_SCRIPT
