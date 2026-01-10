@@ -58,7 +58,7 @@ jobs:
           file: ./backend/Dockerfile
           platforms: "linux/arm64"
           push: ${{ github.ref == 'refs/heads/main' }}
-          cache-to: type=gha
+          cache-to: type=gha,mode=max
           cache-from: type=gha
           tags: |
             ${{ env.REMOTE_LATEST }}
