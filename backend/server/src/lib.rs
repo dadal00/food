@@ -125,7 +125,7 @@
 //! ```sh
 //! just clean
 //! ```
-//!
+//! test
 //!
 //!
 //! ## Utilities
