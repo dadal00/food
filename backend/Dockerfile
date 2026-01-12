@@ -1,4 +1,4 @@
-FROM lukemathwalker/cargo-chef:0.1.73-rust-1.91.1-alpine3.21@sha256:53a4deae020add994c81816587f99111ae653048a1aec6eb8317a60372702ad6 AS base
+FROM lukemathwalker/cargo-chef:0.1.73-rust-1.92.0-alpine3.21@sha256:037f91d8126202e4a92474ccc49af1c5405a52d5c82587f98a2d5d4630d7c987 AS base
 ENV RUSTFLAGS="-C target-feature=-crt-static"
 RUN apk add --no-cache musl-dev openssl-dev pkgconfig protobuf
 
