@@ -24,6 +24,10 @@
 
 # Done
 
+## 1/13/26
+
+- [x] Using numbers to reduce allocations
+
 ## 1/10/26
 
 - [x] Cargo Chef for Docker files + in Github actions
