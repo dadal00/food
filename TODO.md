@@ -1,7 +1,6 @@
 # TODO List
 
 - [ ] Cron job to sync votes for Meilisearch and Redis
-- [ ] Cron job to pull remote bank each day
 
   - [ ] Triggering updating user vote maps if next id or length is different
 
@@ -25,6 +24,8 @@
 # Done
 
 ## 1/13/26
+
+- [x] Cron job to pull remote bank each day
 
 - [x] Using numbers to reduce allocations
 
