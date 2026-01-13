@@ -1,5 +1,5 @@
 use anyhow::Error;
-use prost::{Message, bytes::Buf};
+use prost::{DecodeError, Message, bytes::Buf};
 use reqwest::get;
 
 use crate::{foods::Bank, payloads::Votes};
@@ -36,6 +36,6 @@ pub async fn get_remote_bank() -> Result<RemoteBank, Error> {
     })
 }
 
-pub fn get_votes_from_bytes<B: Buf>(buf: B) -> Result<Votes, prost::DecodeError> {
+pub fn get_votes_from_bytes<B: Buf>(buf: B) -> Result<Votes, DecodeError> {
     Votes::decode(buf)
 }
