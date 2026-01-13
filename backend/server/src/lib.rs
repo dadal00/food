@@ -134,19 +134,20 @@
 //! ```sh
 //! just erase
 //! ```
-use std::time::Duration;
+use std::{sync::Arc, time::Duration};
 
 use axum::{
     Router,
     http::{Method, header::CONTENT_TYPE},
     routing::{get, post},
 };
-
+use bank::get_remote_bank;
 use signal::{
     ctrl_c,
     unix::{SignalKind, signal},
 };
 use tokio::{net::TcpListener, signal};
+use tokio_cron_scheduler::{Job, JobScheduler};
 use tower_http::cors::CorsLayer;
 use tracing::info;
 use tracing_subscriber::{EnvFilter, fmt};
@@ -169,8 +170,10 @@ pub async fn start_server() {
     info!("Initializing state...");
     let state = State::new().await;
 
-    info!("Starting server...");
+    info!("Creating cron jobs...");
+    create_cron_jobs(state.clone()).await;
 
+    info!("Starting server...");
     let cors = CorsLayer::new()
         .allow_methods([Method::GET, Method::OPTIONS])
         .allow_headers([CONTENT_TYPE])
@@ -220,4 +223,39 @@ async fn shutdown_signal() {
         _ = ctrl_c => {},
         _ = terminate => {},
     }
+}
+
+fn remote_bank_refresh_job(state: Arc<State>) -> Job {
+    Job::new_async("10 * * * * *", move |_uuid, _lock| {
+        let state = state.clone();
+
+        Box::pin(async move {
+            let new_bank = match get_remote_bank().await {
+                Ok(bank) => {
+                    info!("Successfully refreshed remote bank");
+                    bank
+                }
+                Err(e) => {
+                    info!("Failed to fetch remote bank: {}", e);
+                    return;
+                }
+            };
+
+            state.remote_bank.store(Arc::new(new_bank));
+        })
+    })
+    .unwrap()
+}
+
+async fn create_cron_jobs(state: Arc<State>) {
+    let scheduler = JobScheduler::new().await.unwrap();
+
+    scheduler
+        .add(remote_bank_refresh_job(state.clone()))
+        .await
+        .unwrap();
+
+    tokio::spawn(async move {
+        scheduler.start().await.expect("Failed to start scheduler");
+    });
 }

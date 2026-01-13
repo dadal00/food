@@ -13,7 +13,7 @@ pub fn get_maps(state: Arc<State>, bytes: Bytes) -> Result<Votes, AppError> {
     let vote_maps = get_votes_from_bytes(bytes).map_err(|_| AppError::MalformedPayload)?;
 
     if vote_maps.old_bit_map.len() != vote_maps.new_bit_map.len()
-        || vote_maps.old_bit_map.len() > state.remote_bank.food_id_to_name.len()
+        || vote_maps.old_bit_map.len() > state.remote_bank.load().food_id_to_name.len()
     {
         return Err(AppError::MalformedPayload);
     }
@@ -48,7 +48,7 @@ fn compare_bits(
         };
 
         let food_index = byte_index * 8 + bit_index;
-        if let Some(name) = state.remote_bank.food_id_to_name.get(food_index) {
+        if let Some(name) = state.remote_bank.load().food_id_to_name.get(food_index) {
             if !name.is_empty() {
                 votes.push((food_index as isize, vote));
             }

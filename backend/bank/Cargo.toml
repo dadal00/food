@@ -7,6 +7,7 @@ edition.workspace = true
 ignored = ["prost"]
 
 [dependencies]
+anyhow = { version = "1.0.100", optional = true }
 prost = "0.14.1"
 reqwest = "0.12.28"
 
@@ -14,4 +15,4 @@ reqwest = "0.12.28"
 prost-build = "0.14.1"
 
 [features]
-payloads = []
+payloads = ["anyhow"]
