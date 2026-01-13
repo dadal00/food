@@ -18,7 +18,7 @@ pub async fn votes_handler(
     State(state): State<Arc<AppState>>,
     body: Bytes,
 ) -> Result<impl IntoResponse, AppError> {
-    let votes = get_votes_from_body(&state, body)?;
+    let votes = get_votes_from_body(state.clone(), body)?;
 
     #[cfg(feature = "verbose")]
     info!("Length of votes: {}", votes.len());

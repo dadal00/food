@@ -19,7 +19,8 @@ impl State {
 
         let config = Config::load();
 
-        let (redis_connection, food_votes) = init_redis(&config.redis_url, &remote_bank.bank).await;
+        let (redis_connection, food_votes) =
+            init_redis(&config.redis_url, &remote_bank.food_id_to_name).await;
 
         let meili_client = init_meilisearch(
             &config.meili_url,

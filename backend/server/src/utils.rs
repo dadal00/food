@@ -21,9 +21,9 @@ pub fn get_maps(state: Arc<State>, bytes: Bytes) -> Result<Votes, AppError> {
     Ok(vote_maps)
 }
 
-fn compare_bits<'a>(
-    state: &'a Arc<State>,
-    votes: &mut Vec<(&'a str, Vote)>,
+fn compare_bits(
+    state: Arc<State>,
+    votes: &mut Vec<(isize, Vote)>,
     old_byte: u8,
     new_byte: u8,
     byte_index: usize,
@@ -50,7 +50,7 @@ fn compare_bits<'a>(
         let food_index = byte_index * 8 + bit_index;
         if let Some(name) = state.remote_bank.food_id_to_name.get(food_index) {
             if !name.is_empty() {
-                votes.push((name.as_str(), vote));
+                votes.push((food_index as isize, vote));
             }
         }
     }
@@ -58,10 +58,7 @@ fn compare_bits<'a>(
     Ok(())
 }
 
-pub fn get_votes_from_body<'a>(
-    state: &'a Arc<State>,
-    body: Bytes,
-) -> Result<Vec<(&'a str, Vote)>, AppError> {
+pub fn get_votes_from_body(state: Arc<State>, body: Bytes) -> Result<Vec<(isize, Vote)>, AppError> {
     let vote_maps = get_maps(state.clone(), body)?;
     let mut votes = Vec::new();
 
@@ -71,7 +68,7 @@ pub fn get_votes_from_body<'a>(
         .zip(vote_maps.new_bit_map.iter())
         .enumerate()
     {
-        compare_bits(state, &mut votes, old_byte, new_byte, byte_index)?;
+        compare_bits(state.clone(), &mut votes, old_byte, new_byte, byte_index)?;
     }
 
     Ok(votes)

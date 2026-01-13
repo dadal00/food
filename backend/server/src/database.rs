@@ -22,7 +22,6 @@
 //! (32 bytes (bitmap) + 20 bytes (key overhead)) × 50,000 = roughly 2.6 MB
 use std::{collections::HashMap, time::Duration};
 
-use bank::foods::Bank;
 use once_cell::sync::Lazy;
 use redis::{
     Client, Script,
@@ -33,7 +32,10 @@ use crate::error::AppError::{self, InternalError};
 
 const FOODS_HASH: &str = "foods";
 
-pub async fn init_redis(redis_url: &str, bank: &Bank) -> (ConnectionManager, HashMap<String, u32>) {
+pub async fn init_redis(
+    redis_url: &str,
+    food_id_to_name: &Vec<String>,
+) -> (ConnectionManager, HashMap<String, u32>) {
     let config = ConnectionManagerConfig::new()
         .set_number_of_retries(1)
         .set_connection_timeout(Some(Duration::from_millis(100)));
@@ -44,14 +46,17 @@ pub async fn init_redis(redis_url: &str, bank: &Bank) -> (ConnectionManager, Has
         .await
         .unwrap();
 
-    let food_votes = populate_foods(&bank.foods, &mut connection_manager).await;
+    let food_votes = populate_foods(food_id_to_name, &mut connection_manager).await;
 
     (connection_manager, food_votes)
 }
 
-fn map_keys_to_zero_vec<T>(map: &HashMap<String, T>) -> Vec<String> {
-    map.keys()
-        .flat_map(|k| vec![k.clone(), "0".to_string()])
+fn map_indices_to_zero(id_to_string: &Vec<String>) -> Vec<usize> {
+    id_to_string
+        .iter()
+        .enumerate()
+        .filter(|(_, v)| !v.is_empty())
+        .flat_map(|(i, _)| vec![i, 0])
         .collect()
 }
 
@@ -78,14 +83,14 @@ static POPULATE_FOODS_SCRIPT: Lazy<Script> = Lazy::new(|| {
     )
 });
 
-pub async fn populate_foods<T>(
-    foods_map: &HashMap<String, T>,
+pub async fn populate_foods(
+    food_id_to_name: &Vec<String>,
     connection_manager: &mut ConnectionManager,
 ) -> HashMap<String, u32> {
     // using a script instead of hset_multiple to avoid overwriting existing values
     let food_votes_vector: Vec<String> = POPULATE_FOODS_SCRIPT
         .key(FOODS_HASH)
-        .arg(map_keys_to_zero_vec(foods_map))
+        .arg(map_indices_to_zero(food_id_to_name))
         .invoke_async(connection_manager)
         .await
         .unwrap();
@@ -122,17 +127,17 @@ pub enum Vote {
 }
 
 impl Vote {
-    pub fn as_str(&self) -> &'static str {
+    pub fn as_str(&self) -> isize {
         match self {
-            Vote::Increment => "1",
-            Vote::Decrement => "-1",
+            Vote::Increment => 1,
+            Vote::Decrement => -1,
         }
     }
 }
 
 pub async fn update_foods(
     connection_manager: &mut ConnectionManager,
-    votes: &[(&str, Vote)],
+    votes: &[(isize, Vote)],
 ) -> Result<(), AppError> {
     if votes.is_empty() {
         return Ok(());
