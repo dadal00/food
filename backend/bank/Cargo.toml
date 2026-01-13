@@ -9,7 +9,7 @@ ignored = ["prost"]
 [dependencies]
 anyhow = { version = "1.0.100", optional = true }
 prost = "0.14.1"
-reqwest = "0.12.28"
+reqwest = "0.13.1"
 
 [build-dependencies]
 prost-build = "0.14.1"
