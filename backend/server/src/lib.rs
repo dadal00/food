@@ -226,7 +226,7 @@ async fn shutdown_signal() {
 }
 
 fn remote_bank_refresh_job(state: Arc<State>) -> Job {
-    Job::new_async("10 * * * * *", move |_uuid, _lock| {
+    Job::new_async("0 0 4 * * *", move |_uuid, _lock| {
         let state = state.clone();
 
         Box::pin(async move {
