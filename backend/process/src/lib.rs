@@ -90,6 +90,15 @@ use bank::{
 use models::{ENDPOINT, Response};
 use utils::{build_payload, format, reset_locations, sanitize, sanitize_bank, today};
 
+pub fn list_locations() {
+    let bank = get_bank();
+
+    println!("Locations:");
+    for (location, id) in bank.locations.iter() {
+        println!("{}: {}", location, id);
+    }
+}
+
 pub async fn load_foods(days_before: u32, days_after: u32) {
     let mut bank = get_bank();
     sanitize_bank(&mut bank);
