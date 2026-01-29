@@ -12,11 +12,9 @@ async fn main() {
     #[cfg(feature = "locations")]
     {
         process::list_locations();
-
         return;
     }
 
     let args = Args::parse();
-
     process::load_foods(args.days_before, args.days_after).await;
 }
