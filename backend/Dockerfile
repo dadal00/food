@@ -5,12 +5,12 @@ RUN apk add --no-cache musl-dev openssl-dev pkgconfig protobuf
 WORKDIR /app/backend
 FROM base AS planner
 COPY ./backend .
-RUN cargo chef prepare --recipe-path recipe.json
+RUN cargo chef prepare --recipe-path recipe.json --package server
 
 WORKDIR /app/backend
 FROM base AS builder
 COPY --from=planner /app/backend/recipe.json recipe.json
-RUN cargo chef cook --release --recipe-path recipe.json
+RUN cargo chef cook --release --recipe-path recipe.json --package server
 
 COPY ./foods.proto /app/foods.proto
 COPY ./payloads.proto /app/payloads.proto
