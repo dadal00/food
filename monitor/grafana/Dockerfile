@@ -1,1 +1,1 @@
-FROM grafana/grafana:12.3.0@sha256:70d9599b186ce287be0d2c5ba9a78acb2e86c1a68c9c41449454d0fc3eeb84e8
+FROM grafana/grafana:13.0.0@sha256:a03d9e604e4dba58c5e64458a879701f46ef64af1f596058aacfad9aacdcab34
