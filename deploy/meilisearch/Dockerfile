@@ -1,1 +1,1 @@
-FROM getmeili/meilisearch:v1.28@sha256:71cdfc95cbbe20e99e430f9c955a52f6530833ed25041710fa0b04f8128cfbb3
+FROM getmeili/meilisearch:v1.43@sha256:5d4e1353927785744486fe317d263f442710ab5b27b1983aa1b719dfe2c665b6
